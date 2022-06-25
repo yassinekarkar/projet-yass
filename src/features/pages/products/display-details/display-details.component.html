@@ -1,11 +1,21 @@
-<div nz-row class="text-center m-5">
-    <div nz-col nzSpan="12" nzOffset="8">
-        <nz-card [nzHoverable]="true" style="width:500px;" [nzTitle]="productTitle">
-            <p class="text-start fs-6"><span class="fw-bold"><i class="bi text-primary bi-ticket-detailed"></i> Référence : </span> {{ productDetails['code'] }}</p>
-            <p class="text-start fs-6"><span class="fw-bold"><i class="bi text-primary bi-bookmark-plus"></i> Unité : </span>{{ "Test" }}</p>
-            <p class="text-start fs-6"><span class="fw-bold"><i class="bi text-primary bi-tag"></i> Prix HT : </span>  {{ productDetails['prix_ht'] }}</p>
-            <p class="text-start fs-6"><span class="fw-bold"><i class="bi text-primary bi-coin"></i> TVA (%) : </span>  {{ productDetails['vat'] }}</p>
-            <p class="text-start fs-6"><span class="fw-bold"><i class="bi text-primary bi-tags-fill"></i> Prix TTC (%) : </span>  {{ productDetails['prix_ttc'] }}</p>
-        </nz-card>
-    </div>
+<div nz-row class="m-5">
+    <nz-card [nzHoverable]="true" style="width:500px;" [nzTitle]="productTitle">
+        <div class="row">
+            <div class="col-6">
+                <span class="fw-bold fs-5"> Référence : </span><br>
+                <span class="fw-bold fs-5"> Unité : </span> <br>
+                <span class="fw-bold fs-5"> Prix HT : </span> <br>
+                <span class="fw-bold fs-5"> TVA (%) : </span> <br>
+                <span class="fw-bold fs-5"> Prix TTC (%) : </span><br>
+            </div>
+            <div class="col-6">
+                <span class=" fs-5"> {{productDetails['description'] }} </span><br>
+                <span class=" fs-5"> {{productDetails['unity'] }} </span> <br>
+                <span class=" fs-5"> {{productDetails['prix_ht'] }} </span> <br>
+                <span class=" fs-5"> {{productDetails['vat'] }} </span> <br>
+                <span class=" fs-5"> {{productDetails['prix_ttc'] }}</span><br>
+            </div>
+        </div>
+
+    </nz-card>
 </div>

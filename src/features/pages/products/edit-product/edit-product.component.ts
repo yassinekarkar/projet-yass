@@ -29,8 +29,7 @@ export class EditProductComponent implements OnInit {
   uitiesList: IUnity[] = [];
 
   editProductForm = new FormGroup({});
-  currentUnity: string = "jack"; //just For Test
-  currentTva : string  = "lucy"; //just For Test
+  prixTTC: number ;
   res: boolean = false
   constructor(
     private route: Router,
@@ -40,18 +39,11 @@ export class EditProductComponent implements OnInit {
     private vatServie: VatsService,
     private router: ActivatedRoute,
     private _notification: NzNotificationService) { }
-
-
-  ngOnInit() {
-    
-    // this.currentUnity = this.productDetails['unity'];
-    // this.currentTva = this.productDetails['vta'];
-    
+  ngOnInit() {    
     this.editProductForm = this.fb.group({
       name : [this.productDetails['name'],Validators.required],
-      code : [this.productDetails['code'],Validators.required],
+      description : [this.productDetails['description'],Validators.required],
       prix_ht: [this.productDetails['prix_ht'],Validators.required], 
-      prix_ttc: [this.productDetails['prix_ttc'],[Validators.required]],
       unity: ['',Validators.required],
       vat: ['',Validators.required]
     });
@@ -62,12 +54,15 @@ export class EditProductComponent implements OnInit {
         console.log('test test', this.product);
       }
       ),
-      this.getVats();
+    this.getVats();
     this.getUnities();
     this.updateProduct();
   }
 
-
+  public updatePrice() {    
+    let taxe = this.editProductForm.get('prix_ht').value * (this.editProductForm.get('vat').value/100);
+    this.prixTTC = this.editProductForm.get('prix_ht').value + taxe;
+  }
   getVats() {
     this.vatServie.getVats();
     this.vatServie.getVatsSuccess().subscribe((vats: any) => {
@@ -75,8 +70,8 @@ export class EditProductComponent implements OnInit {
 
     })
   }
-
   getUnities() {
+
     this.unityService.getUnities();
     this.unityService.getUnitiesSuccess().subscribe((unities: any) => {
       this.uitiesList = unities?.results?.data?.rows
@@ -109,10 +104,6 @@ export class EditProductComponent implements OnInit {
       this.route.navigateByUrl("/products")
 
     })
-  }
-  test(){
-    console.log(this.editProductForm.value);
-    
   }
 
 }
