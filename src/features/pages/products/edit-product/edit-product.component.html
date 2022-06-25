@@ -1,0 +1,49 @@
+<form nz-form [formGroup]="editProductForm" (ngSubmit)="updateProduct()">
+    <nz-form-item>
+        <nz-form-label nzSm="8" nzRequired nzFor="name">Désignation</nz-form-label>
+        <nz-form-control nzSm="12" nzErrorTip="Please input your username!">
+            <input id="name" class="form-control rounded-pill" type="text" nz-input formControlName="name" />
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label nzSm="8" nzRequired nzFor="code">Référence</nz-form-label>
+        <nz-form-control nzSm="12" nzErrorTip="Please input your username!">
+            <input id="code" type="text" class="rounded-pill" nz-input formControlName="code" />
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label nzSm="8" nzRequired nzFor="code">Unity</nz-form-label>
+        <nz-form-control nzSm="12" nzErrorTip="Please input your username!">
+            <nz-select [ngModel]="currentUnity" formControlName="unity">
+                <nz-option nzValue="jack" nzLabel="Jack"></nz-option>
+                <nz-option nzValue="lucy" nzLabel="Lucy"></nz-option>
+                <nz-option nzValue="disabled" nzLabel="Disabled" nzDisabled></nz-option>
+            </nz-select>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label nzSm="8" nzRequired nzFor="unit_price">Prix HT</nz-form-label>
+        <nz-form-control nzSm="12" nzErrorTip="Please input your username!">
+            <input id="prix_ht" type="text " class="rounded-pill" nz-input formControlName="prix_ht" />
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label nzSm="8">TVA</nz-form-label>
+        <nz-form-control nzSm="12" nzRequired nzErrorTip="Please select your TVA!">
+            <nz-select [ngModel]="currentTva" formControlName="vat" style="border-radius:60px" nzRequired>
+                <nz-option nzValue="jack" nzLabel="Jack"></nz-option>
+                <nz-option nzValue="lucy" nzLabel="Lucy"></nz-option>
+                <nz-option nzValue="disabled" nzLabel="Disabled" nzDisabled></nz-option>
+            </nz-select>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label nzSm="8" nzRequired nzFor="prix_ttc">Prix TTC</nz-form-label>
+        <nz-form-control nzSm="12" nzErrorTip="Please input your username!">
+            <input id="prix_ttc" type="number" class="rounded-pill" nz-input formControlName="prix_ttc" />
+        </nz-form-control>
+    </nz-form-item>
+    <div class="px-5 row text-end">
+        <button nz-button nzType="primary" type="submit">Modifier</button>
+    </div>
+</form>

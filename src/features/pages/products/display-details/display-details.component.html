@@ -1,0 +1,11 @@
+<div nz-row class="text-center m-5">
+    <div nz-col nzSpan="12" nzOffset="8">
+        <nz-card [nzHoverable]="true" style="width:500px;" [nzTitle]="productTitle">
+            <p class="text-start fs-6"><span class="fw-bold"><i class="bi text-primary bi-ticket-detailed"></i> Référence : </span> {{ productDetails['code'] }}</p>
+            <p class="text-start fs-6"><span class="fw-bold"><i class="bi text-primary bi-bookmark-plus"></i> Unité : </span>{{ "Test" }}</p>
+            <p class="text-start fs-6"><span class="fw-bold"><i class="bi text-primary bi-tag"></i> Prix HT : </span>  {{ productDetails['prix_ht'] }}</p>
+            <p class="text-start fs-6"><span class="fw-bold"><i class="bi text-primary bi-coin"></i> TVA (%) : </span>  {{ productDetails['vat'] }}</p>
+            <p class="text-start fs-6"><span class="fw-bold"><i class="bi text-primary bi-tags-fill"></i> Prix TTC (%) : </span>  {{ productDetails['prix_ttc'] }}</p>
+        </nz-card>
+    </div>
+</div>

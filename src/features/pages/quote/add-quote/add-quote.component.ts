@@ -28,7 +28,6 @@ import { UnitiesService } from 'src/core/services/unities.service';
 
 import { IVat } from 'src/core/interfaces/vat.interface';
 import { IUnity } from 'src/core/interfaces/unity.interface';
-import { ligne } from '../ligne.model';
 import { HostListener } from '@angular/core';
 
 @Component({
@@ -139,9 +138,9 @@ export class AddQuoteComponent implements OnInit {
     finalObject = this.formQuote.value;
     finalObject['creator'] = this.userInfo.code;
     finalObject['products'] = this.itemList;
-    finalObject['discount'] = this.thereIsDiscount;
-    finalObject['discount_fixed_value'] = this.displayRemiseColumn;
-    finalObject['discount_on_total'] = this.displayRemiseTotal;
+    finalObject['discount'] = this.thereIsDiscount?1:0;
+    finalObject['discount_fixed_value'] = this.displayRemiseColumn?1:0;
+    finalObject['discount_on_total'] = this.displayRemiseTotal?1:0;
     finalObject['status'] = 'DRAFT';
     console.log("quote donnees",finalObject);
     

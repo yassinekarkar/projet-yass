@@ -21,7 +21,6 @@ import {ibansReducer} from "../core/store-layer/ibans/ibans.reducer";
 import {PreloaderComponent} from "../preloader/preloader.component";
 import {SharedModule} from "../shared";
 
-import { Add_productComponent } from '../features/pages/products/add_product/add_product.component';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -57,8 +56,6 @@ export const HTTP_LOADER_FACTORY = (httpClient: HttpClient) =>
     RegisterComponent,
     AuthComponent,
     PreloaderComponent,
-
-
   ],
   exports:[
     SharedModule,

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 
@@ -7,29 +7,37 @@ import { Router } from '@angular/router';
   templateUrl: './sub-header.component.html',
   styleUrls: ['./sub-header.component.less']
 })
+
 export class SubHeaderComponent implements OnInit {
-  
+
   @Input() canGoBack = false;
-  @Input() title=''
-  @Input() url=''
-  @Input() display='false';
+  @Input() title = ''
+  @Input() url = ''
+  @Input() display = 'false';
+  @Output() addProduct = new EventEmitter<boolean>();
+  routeIsProduct: boolean = false;
 
-  routeIsProduct : boolean = false;
-  
-  constructor( private _location: Location , private _router:Router) { }
+  constructor(private _location: Location, private _router: Router) { }
   ngOnInit(): void {
-    if(this._router.url == '/products') {
+    let currentUrl = this._router.url;
+    if (currentUrl == '/products') {
       let addElement = document.querySelector('#addButton')
-      addElement.setAttribute('data-bs-toggle','modal');
+      addElement.setAttribute('data-bs-toggle', 'modal');
       this.routeIsProduct = true;
-    } 
-
+    } else if (currentUrl == '/quotes') {
+      console.log("a");
+    }
+    else {
+      currentUrl == 'my-clients'
+    }
   }
-  
-  changeModelValue() {
-    if(this._router.url == '/products') {
-      let addElement = document.querySelector('#addButton')
-      addElement.setAttribute('data-bs-toggle','modal');
+
+  add() {
+    if (this._router.url == '/products') {
+      this.addProduct.emit(true);
+    }
+    if (this._router.url == '/quotes') {
+      this._router.navigateByUrl('/quotes/add_quote');
     }
   }
 
@@ -37,7 +45,7 @@ export class SubHeaderComponent implements OnInit {
     this._location.back();
   }
 
-  goTo(){
+  goTo() {
     this._router.navigateByUrl(this.url)
   }
 

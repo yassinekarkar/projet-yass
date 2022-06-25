@@ -24,7 +24,7 @@ const ROUTES: Routes = [
     }
   },
 
-  { path: '', canActivate: [AuthGuard],   loadChildren: () => import('../features/features.module').then(m => m.FeaturesModule) },
+  { path: '',   loadChildren: () => import('../features/features.module').then(m => m.FeaturesModule) }, // Under Develop canActivate: [AuthGuard]
 ];
 
 @NgModule({

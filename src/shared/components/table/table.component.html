@@ -29,7 +29,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr  *ngFor="let data of sortTable.data;let j = index"   >
+    <tr  *ngFor="let data of sortTable.data"   >
       <td *ngFor="let header of listOfData.header">
 
         <div *ngIf="header.name !== 'actions' && header.name !== 'status'
@@ -50,18 +50,20 @@
           <nz-avatar nzIcon="user" [nzSrc]="data[header.name]"  (error)="onImgError($event)" [nzAlt]="data[header.name]"></nz-avatar>
         </div>
         <div *ngIf="header.name === 'actions'" class="column">
-          <button *ngIf="header.name === 'actions'" nzType="text" (click)="test($event)"  nzTrigger="click" nz-button nz-dropdown [nzDropdownMenu]="actionsMenu"
+          <button *ngIf="header.name === 'actions'" nzType="text"  nzTrigger="click" nz-button nz-dropdown [nzDropdownMenu]="actionsMenu"
                   nzPlacement="bottomLeft" [nzOverlayClassName]="'dropDown-table'">
             <em nz-icon nzType="more" nzTheme="outline"></em>
           </button>
-          <nz-dropdown-menu #actionsMenu="nzDropdownMenu">
-            <ul  nz-menu >              
-                <li id="productEdition{{j}}"  class="onlyInProduct" data-bs-toggle="modal" data-bs-target="#editModal"   nz-menu-item><em nz-icon ></em>{{"Editer" | translate}}
-                </li>
-                <li id="productDisplay{{j}}" (click)="test($event)"  class="onlyInProduct" data-bs-toggle="modal" data-bs-target="#displayModal"   nz-menu-item><em nz-icon ></em>{{"Afficher Détails" | translate}}
-                </li>
-            </ul>
-          </nz-dropdown-menu>
+          <div id="tested">
+            <nz-dropdown-menu #actionsMenu="nzDropdownMenu">
+              <ul nz-menu >              
+                  <li id="itemEdition{{data.id}}" (click)="passId($event)" nz-menu-item><em nz-icon ></em>{{"Editer" | translate}}
+                  </li>
+                  <li id="itemDisplay{{data.id}}" (click)="passId($event)"  nz-menu-item><em nz-icon ></em>{{"Afficher Détails" | translate}}
+                  </li>
+              </ul>
+            </nz-dropdown-menu>
+          </div>
         </div>
       </td>
 
@@ -96,37 +98,3 @@
   ></el-bill-pagination>
 </div>
 <el-bill-total [total]="800"></el-bill-total>
-<!-- Modal -->
-<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <app-edit-product></app-edit-product>
-  </div>
-</div>
-<div class="modal fade" id="displayModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel"><i class="bi bi-box2"></i>  Détails d'un Produit</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body offset-1">
-        <div class="card" style="width: 25rem;">
-          <div class="card-header text-center fs-5 fw-bold fst-italic">
-            {{target.name}}
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="text-start fs-6 list-group-item">Nom de Produit : {{target.name }}</li>
-            <li class="text-start fs-6 list-group-item">Description : {{target.description }}</li>
-            <li class="text-start fs-6 list-group-item">Prix HT : {{target.prix_ht }}</li>
-            <li class="text-start fs-6 list-group-item">TVA : {{target.vat }}</li>
-            <li class="text-start fs-6 list-group-item">Unity : {{target.unity }}</li>
-            <li class="text-start fs-6 list-group-item">Prix TTC : {{target.prix_ttc }}</li>
-          </ul>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>

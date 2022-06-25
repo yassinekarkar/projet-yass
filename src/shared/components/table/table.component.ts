@@ -1,58 +1,58 @@
-import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
-import {ICompany, ITable} from "../../../core";
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { ICompany, ITable } from "../../../core";
 import { Router } from '@angular/router';
 import { Product } from 'src/features/pages/products/products.model';
-
 @Component({
   selector: 'el-bill-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.less']
 })
 export class TableComponent implements OnInit {
-  @Input() listOfData!: ITable ;
+  @Input() listOfData!: ITable;
   @Input() current = 1;
   @Input() total = 20;
   @Input() pageSize = 5;
   @Input() dataFrom = '';
-  
-  target : any ;
-  
-  totalFac=0 ;
+  @Output() newProductClicked = new EventEmitter<string>();
+  @Output() newDisplayProduct = new EventEmitter<string>();
+
+  target: any;
+
+  totalFac = 0;
   display_details: boolean = true;
 
-  
+
   constructor(private route: Router) { }
 
   ngOnInit(): void {
-    this.target = {vat: 0,unity: 0, prix_ttc: 0, code: 'Guest', name: 'Guest', prix_ht: 0, description: 'Guest'};
-    console.log(this.listOfData);
-    if(this.route.url != '/products') {
-      let editModal = document.querySelector('#editModal');
-      editModal.id = "invalid1";
-      let displayModal = document.querySelector('#displayModal');
-      displayModal.id ="invalid2";
-    };
+    this.target = { vat: 0, prix_ttc: 0, code: 'Guest', name: 'Guest', prix_ht: 0 };
+
   }
-  
-  test(event) {
-    let element = event.target as HTMLElement;
-    let id = element.id.slice(14);
-    let productList = this.listOfData.data[id];
-    this.target = productList;
+
+  passId(e){
+    let id = e.target.id;
+    let identifier = id.slice(11);
+    if (id.slice(4, 11) == "Edition") {
+      this.newProductClicked.emit(identifier);
+    }
+    if (id.slice(4, 11) == "Display") {
+      this.newDisplayProduct.emit(identifier);
+    }
   }
+
+
 
   onPageSizeChange(pageSize: number) {
     this.pageSize = pageSize;
   }
-
-  onImgError(event){
+  onImgError(event) {
     event.target.src = './assets/images/smarteo.png'
   }
-
+  test(event) {
+    console.log(event);
+  }
 
   onPageIndexChange(pageIndex: number) {
     this.current = pageIndex;
   }
-
 }
-  

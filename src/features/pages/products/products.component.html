@@ -1,6 +1,19 @@
-<el-bill-sub-header [title]="'buttons.products'" [url]="'/products/add_product'"></el-bill-sub-header>
+<el-bill-sub-header (addProduct)="displayDetailsModal($event)" [title]="'buttons.products'" [url]="'/products/add_product'"></el-bill-sub-header>
+<app-display-details [(productDetails)]="data" *ngIf="displayDetails" ></app-display-details>
+<el-bill-table [dataFrom]="'products'" (newDisplayProduct)="displayProduct($event)"  (newProductClicked)="displayModal($event)"  [listOfData]="listOfData" ></el-bill-table>
 
-<el-bill-table [dataFrom]="'products'"  [listOfData]="listOfData" ></el-bill-table>
+<!-- Modal Edition  -->
 
+<nz-modal [(nzVisible)]="isVisible" nzTitle="Editer Votre Produit" (nzOnCancel)="handleCancel()" nzFooter=" ">
+  <ng-container *nzModalContent>
+    <app-edit-product [(productDetails)]="data"></app-edit-product>
+  </ng-container>
+</nz-modal>
 
+<!-- Modal Add -->
 
+<nz-modal [(nzVisible)]="isVisible1" nzTitle="Ajouter un Produit" (nzOnCancel)="handleCancel()" nzFooter=" ">
+  <ng-container *nzModalContent>
+    <app-add-product></app-add-product>
+  </ng-container>
+</nz-modal>

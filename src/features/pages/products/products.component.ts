@@ -1,46 +1,50 @@
-import {Component, OnInit, Input, Output} from '@angular/core';
-import {Product} from './products.model';
+import { Component, OnInit, Input, Output } from '@angular/core';
+import { Product } from './products.model';
 import { ProductsService } from 'src/core/services/product.service';
-import {ICompany, ITable, ITableData} from "../../../core";
+import { ICompany, ITable, ITableData } from "../../../core";
 import { PRODUCTSLIST } from 'src/mocks/products.mocks';
 import { Router } from '@angular/router';
+import { NzModalModule } from 'ng-zorro-antd/modal';
 
 @Component({
-  selector: 'el-bill-products',
   templateUrl: './products.component.html',
+  selector: 'el-bill-products',
   styleUrls: ['./products.component.less']
 })
-export class ProductsComponent implements OnInit{
-  products$ : Product[];
+export class ProductsComponent implements OnInit {
+  products$: Product[];
   
+  isVisible: boolean;
+  isVisible1:boolean;
+  displayDetails: boolean;
+
   @Input() dataFrom = '';
-  @Input() PRODUCTS = PRODUCTSLIST ;
+  @Input() PRODUCTS = PRODUCTSLIST;
   @Input() listOfData: ITable = {
     header: [
-     
       { name: 'name' },
       { name: 'prix_ht' },
       { name: 'vat' },
       { name: 'prix_ttc' },
       { name: 'actions' }
     ],
-    data: this.PRODUCTS as ITableData[] ,
+    data: this.PRODUCTS as ITableData[],
     actions: [],
     nameTable: ['les produits']
   };
 
-  constructor(private productService: ProductsService , private router : Router ) {}
-
+  data: Object = {};
+  constructor(private productService: ProductsService, private router: Router) { }
   ngOnInit() {
     //this.getCountriesList() ;
-    this.listOfData.actions= [
+    this.listOfData.actions = [
       {
         name: 'common.update',
         icon: 'edit',
         fn: (data: any) => {
           console.log(data);
-          
-           this.router.navigateByUrl(`/products/edit_product/?id=${data.code}`)
+
+          this.router.navigateByUrl(`/products/edit_product/?id=${data.code}`)
         }
       },
       {
@@ -55,9 +59,49 @@ export class ProductsComponent implements OnInit{
     ]
 
     return this.productService.getProducts()
-    .subscribe((data :any) => { console.log(data);
-     this.listOfData.data= data.results.data.rows})
-
+      .subscribe((data: any) => {
+        console.log(data);
+        this.listOfData.data = data.results.data.rows
+      })
+    this.isVisible = true;
   }
   
+  handleOk(): void {
+    console.log('Button ok clicked!');
+    this.isVisible = false;
+  }
+
+  showModal(): void {
+    this.isVisible = true;
+  }
+
+  handleCancel(): void {
+    console.log('Button cancel clicked!');
+    this.isVisible = false;
+    this.isVisible1 = false;
+  }
+
+  displayModal(e) {
+    let productTarget = this.getProductHasId(e);
+    this.data = productTarget;
+    this.isVisible = true;
+  }
+
+  displayDetailsModal(event) {
+    this.isVisible1 = true;
+  }
+
+  displayProduct(e) {
+    let productTarget = this.getProductHasId(e);
+    this.data = productTarget;
+    this.displayDetails = true;
+  }
+
+  private getProductHasId(_id: number) {
+    let product: any;
+    this.PRODUCTS.forEach(element => {
+      if (element.id == _id) product = element
+    });
+    return product;
+  }
 }

@@ -4,7 +4,7 @@ import {QuoteComponent} from "./quote.component";
 import { AddQuoteComponent } from './add-quote/add-quote.component';
 
 import { Affiche_detailsComponent } from './affiche_details/affiche_details.component';
-import { Edit_quoteComponent } from './edit_quote/edit_quote.component';
+import { EditQuoteComponent } from './edit-quote/edit-quote.component';
 
 const ROUTES: Routes = [
   { path: '', component: QuoteComponent },
@@ -32,7 +32,7 @@ const ROUTES: Routes = [
      }
    }
   },   
-  { path: 'quotes/edit_quote/:id',     component: Edit_quoteComponent ,
+  { path: 'quotes/edit_quote/:id',     component: EditQuoteComponent ,
   data: {
     seo: {
       title: 'ELBill - Edit Quote'
