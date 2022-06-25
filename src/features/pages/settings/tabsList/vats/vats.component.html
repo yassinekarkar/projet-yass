@@ -1,0 +1,11 @@
+
+<div class="percent-width-100 center-horizontally  el-bill-vats align-center">
+  <div class="card m-10 text-center" *ngFor="let vat of vatsList " >
+    <el-bill-cardSettings  [type]="'vat'" [card]="vat"></el-bill-cardSettings>
+  </div>
+  <div class="card m-10 text-center" >
+    <el-bill-cardSettings [type]="'vat'"  ></el-bill-cardSettings>
+  </div>
+</div> 
+
+

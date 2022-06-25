@@ -1,0 +1,60 @@
+<div class="modal-dialog">
+    <div class="modal-content">
+    <form nz-form [formGroup]="form" (ngSubmit)="addProduct()">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Ajouter un produit</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div id="modelBody" class="modal-body text-center">
+        <nz-form-item >
+            <nz-form-label nzSm="6" nzRequired nzFor="name">Nom</nz-form-label>
+            <nz-form-control nzSm="12" nzErrorTip="Please input your username!">
+              <input id="name" class="form-control rounded-pill" type="text" nz-input formControlName="name" />
+            </nz-form-control>
+        </nz-form-item>    
+        <nz-form-item>
+            <nz-form-label nzSm="6" nzRequired nzFor="description">Description</nz-form-label>
+            <nz-form-control nzSm="12" nzErrorTip="Please input your username!">
+              <input id="description" type="text" class="rounded-pill" nz-input formControlName="description" />
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label nzSm="6" nzRequired nzFor="unit_price">Prix</nz-form-label>
+            <nz-form-control nzSm="12" nzErrorTip="Please input your username!">
+              <input id="unit_price" type="text " class="rounded-pill" nz-input formControlName="unit_price" />
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label nzSm="6">TVA</nz-form-label>
+          <nz-form-control nzSm="12" class="sel" nzErrorTip="Please select your TVA!">
+            <select class="form-control col-lg-8" (change)="onChangeVat($event)" required>
+              <option *ngFor="let vat of vatsList" [value]="vat.code">
+                {{vat.value}}
+              </option>
+            </select>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label nzSm="6">UNITY</nz-form-label>
+          <nz-form-control nzSm="12" class="sel" nzErrorTip="Please select your TVA!">
+            <select class="form-control col-lg-8" (change)="onChangeUnity($event)" required>
+              <option *ngFor="let unity of uitiesList" [value]="unity.code">
+                {{unity.name}}
+              </option>
+            </select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>          
+      <div class="modal-footer">
+        <nz-row nzGutter="16">
+            <nz-col nzSpan="12">
+                <button nzType="secondary" nz-button class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Annuler</button>
+            </nz-col>
+            <nz-col nzSpan="12">
+                <button nz-button class="rounded-pill" nzType="primary">Ajouter</button>
+            </nz-col>
+        </nz-row>
+      </div>
+    </form>
+    </div>
+  </div>

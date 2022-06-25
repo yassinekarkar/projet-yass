@@ -1,0 +1,94 @@
+<body> 
+  <h4>Edit product</h4>
+     <form  [formGroup]="editClient" (ngSubmit)="updateClient()" >
+      <div>
+        <div class="form-group">
+   <!-- fromConrtrole name bech tji 3al select  select :  option bech ikoun feha l id wl espace win tekteb bech ikoun feha {{}}-->
+          <label for="name">name</label>
+          <input id="name" type="text"  formControlName="name"  [(ngModel)]="client.name">
+          <br> <br>  
+          <label for="country">Country</label>
+          <select class="form-control col-lg-8" (change)="onChangeCountry($event)" formControlName="country" required [(ngModel)]="client.country" >
+            <option *ngFor="let country of countryList" [value]="country.code">
+                {{country.longname}}
+            </option>    
+        </select>
+        <br> <br>
+        <label for="payment_condition">Payment Condition:</label>
+
+        <select class="form-control col-lg-8" (change)="onChangePaymentCondition($event)" formControlName="payment_condition" required  [(ngModel)]="client.payment_condition" >
+          <option *ngFor="let paymentCondition of paymentConditionList" [value]="paymentCondition.code">
+              {{paymentCondition.longname}}
+          </option>    
+      </select>
+          <br> <br>
+          <label for="firstname">firstname</label>
+          <input id="firstname" type="text"  formControlName="firstname" [(ngModel)]="client.firstname" >
+          <br> <br>
+          <label for="reference">reference</label>
+          <input id="reference" type="text"  formControlName="reference" [(ngModel)]="client.reference" >
+    
+          <br> <br>
+          <label for="lastname">lastname</label>
+          <input id="lastname" type="text"  formControlName="lastname" [(ngModel)]="client.lastname" >
+
+          <br> <br>
+          <label for="registry_number">registry Number</label>
+          <input id="registry_number" type="text"  formControlName="registry_number" [(ngModel)]="client.registry_number" >
+
+          <br> <br>
+          <label for="vat_number">vatNumber</label>
+          <input id="vat_number" type="text"  formControlName="vat_number" [(ngModel)]="client.vat_number" >
+
+          <br> <br>
+
+          <label for="address">address</label>
+          <input id="address" type="text"  formControlName="address" [(ngModel)]="client.address">
+
+          <br> <br>
+
+          <label for="zipcode">zipcode</label>
+          <input id="zipcode" type="text"  formControlName="zipcode" [(ngModel)]="client.zipcode">
+
+          <br> <br>
+
+          <label for="city">city</label>
+          <input id="city" type="text"  formControlName="city" [(ngModel)]="client.city">
+
+          <br> <br>
+
+          <label for="mail">mail</label>
+          <input id="mail" type="text"  formControlName="mail" [(ngModel)]="client.mail">
+
+          <br> <br>
+
+          <label for="phone">phone</label>
+          <input id="phone" type="text"  formControlName="phone" [(ngModel)]="client.phone">
+
+          <br> <br>
+
+          <label for="type">type</label>
+          <input id="type" type="text"  formControlName="type" [(ngModel)]="client.type">
+
+          <br> <br>
+
+          <label for="ebill_type">ebillType</label>
+          <input id="ebill_type" type="text"  formControlName="ebill_type" [(ngModel)]="client.ebill_type">
+
+          <br> <br>
+
+          <label for="ebill_identifier">ebillIdentifier</label>
+          <input id="ebill_identifier" type="text"  formControlName="ebill_identifier" [(ngModel)]="client.ebill_identifier">
+
+          <br> <br>
+
+    
+         
+          <button type="submit" class="button">Edit</button>
+        </div>
+        </div>
+        </form>
+  
+  </body>
+  
+  

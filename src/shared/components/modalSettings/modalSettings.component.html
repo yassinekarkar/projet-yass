@@ -1,0 +1,124 @@
+<div class="el-bill-modalSettings ">
+  <nz-modal nzWrapClassName="modalSettings"  [nzMaskClosable]="false" [(nzVisible)]="isVisible" [nzTitle]="title | translate" (nzOnCancel)="handleCancel()">
+    <ng-container *nzModalContent  >
+      <div class="content" *ngIf="action === 'update'" >
+        <form nz-form [nzLayout]="'inline'" [formGroup]="modalForm" (ngSubmit)="submitForm()"  >
+      
+      
+          <nz-form-item *ngIf="type == 'vat'">
+            <nz-form-control [nzErrorTip]="'errors.invalid_value'| translate">
+              <input formControlName="value" [(ngModel)]="card.value" nz-input placeholder="value" />
+            </nz-form-control>
+          </nz-form-item>
+  
+  
+  
+          <nz-form-item *ngIf="type === 'unity'">
+            <nz-form-control [nzErrorTip]="'errors.invalid_name'| translate">
+              <input  formControlName="name" [(ngModel)]="card.name" nz-input placeholder="name" />
+            </nz-form-control>
+          </nz-form-item>  
+
+          <nz-form-item *ngIf="type === 'country'">
+            <nz-form-control [nzErrorTip]="'errors.invalid_name'| translate">
+              <input  formControlName="name" [(ngModel)]="card.name" nz-input placeholder="name" />
+            </nz-form-control>
+          </nz-form-item>  
+
+          <nz-form-item *ngIf="type === 'iban'">
+            <nz-form-control [nzErrorTip]="'errors.invalid_iban'| translate">
+              <input  formControlName="iban" [(ngModel)]="card.iban" nz-input placeholder="iban" />
+            </nz-form-control>
+          </nz-form-item>  
+  
+  
+        
+          <nz-form-item>
+            <nz-form-control>
+              <button (click)="updateCard(card)"  nz-button class="bill-success-button"  nzType="primary" [disabled]="!modalForm.valid">{{'common.update' | translate}}</button>
+            </nz-form-control>
+          </nz-form-item>
+  
+         
+        <!-- <nz-form-item *ngIf="type ==='unity'">
+            <nz-form-control>
+              <button (click)="updateCard(card)"  nz-button class="bill-success-button"  nzType="primary" [disabled]="!modalForm.valid">{{'common.update' | translate}}</button>
+            </nz-form-control>
+          </nz-form-item> -->
+        </form>
+      </div>
+  
+  
+      <div class="content"  *ngIf="action === 'add' && type == 'vat'" >
+        <form nz-form [nzLayout]="'inline'" [formGroup]="modalForm" (ngSubmit)="submitForm()">
+          <nz-form-item >
+            <nz-form-control [nzErrorTip]="'errors.invalid_name'| translate">
+              <input formControlName="value"  nz-input placeholder="value" />
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-control>
+              <button   nz-button   nzType="primary" [disabled]="!modalForm.valid">{{'common.add' | translate}}</button>
+            </nz-form-control>
+          </nz-form-item>
+        </form>
+      </div>
+
+      <div class="content"  *ngIf="action === 'add' && type == 'unity'" >
+        <form nz-form [nzLayout]="'inline'" [formGroup]="modalForm" (ngSubmit)="submitForm()">
+          <nz-form-item >
+            <nz-form-control [nzErrorTip]="'errors.invalid_name'| translate">
+              <input formControlName="name"  nz-input placeholder="name" />
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-control>
+              <button   nz-button   nzType="primary" [disabled]="!modalForm.valid">{{'common.add' | translate}}</button>
+            </nz-form-control>
+          </nz-form-item>
+        </form>
+      </div>
+
+
+
+      <div class="content"  *ngIf="action === 'add' && type == 'iban'" >
+        <form nz-form [nzLayout]="'inline'" [formGroup]="modalForm" (ngSubmit)="submitForm()">
+          <nz-form-item >
+            <nz-form-control [nzErrorTip]="'errors.invalid_iban'| translate">
+              <input formControlName="iban"  nz-input placeholder="iban" />
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-control>
+              <button   nz-button   nzType="primary" [disabled]="!modalForm.valid">{{'common.add' | translate}}</button>
+            </nz-form-control>
+          </nz-form-item>
+        </form>
+      </div>
+
+
+      <div class="content"  *ngIf="action === 'add' && type == 'country'" >
+        <form nz-form [nzLayout]="'inline'" [formGroup]="modalForm" (ngSubmit)="submitForm()">
+          <nz-form-item >
+            <nz-form-control [nzErrorTip]="'errors.invalid_iban'| translate">
+              <input formControlName="name"  nz-input placeholder="name" />
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-control>
+              <button   nz-button   nzType="primary" [disabled]="!modalForm.valid">{{'common.add' | translate}}</button>
+            </nz-form-control>
+          </nz-form-item>
+        </form>
+      </div>
+
+
+  
+    </ng-container>
+  
+  </nz-modal>
+  
+ </div>
+  
+ 
+ 

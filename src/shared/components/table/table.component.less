@@ -1,0 +1,85 @@
+.el-bill-table {
+  tr{
+    border-radius: 30px;
+  }
+  th {
+    border-radius: 30Px !important;
+    border: 1px solid var(--light-blue-color);
+    background: transparent;
+    text-align: center;
+    color: var(--primary-color);
+
+    font-family: 'Bold';
+    font-size: 18px;
+  }
+
+  td {
+    .column {
+      font-family: 'Medium';
+    }
+    &:first-child {
+      .column {
+        font-family: 'Bold';
+        border-radius: 30px !important;
+        background-color: var(--light-blue-color);
+        &.image {
+          background: transparent !important;
+        }
+      }
+
+  }
+
+  }
+  td {
+    border: none !important;
+  }
+
+  .ant-table-tbody{
+    text-align: center;
+  }
+
+  span.badge {
+   // background-color: red;
+    width: 100%;
+    padding: 5px 20px;
+    border-radius: 20px;
+    color: #fff;
+    font-size: 12px;
+    font-family: 'Light';
+    &.badge-success{
+      background-color: green;
+    };
+    &.badge-draft{
+      background-color: red;
+    }
+
+  }
+
+  .anticon.anticon-more {
+    font-size: 25px;
+  }
+
+  .ant-avatar{
+    width: 60px;
+    height: 60Px;
+  }
+
+  .total.ant-table-row {
+    background: #fff;
+    padding: 10px !important;
+    box-shadow: 6px 0px 5px rgba(0,0,0,.05);
+    height: 60px !important;
+    margin: 28px 0;
+    line-height: 30px;
+  //  border-radius: 30Px;
+    .tot{
+      color: var(--primary-color);
+      font-family: 'Bold';
+      font-size: 16px;
+    }
+    .facture{
+      font-family: 'Bold';
+      color:#000
+    }
+  }
+}

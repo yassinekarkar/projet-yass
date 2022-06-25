@@ -1,0 +1,48 @@
+<div class="el-bill-cardSettings ">
+  <nz-card class=" card" *ngIf="card ">
+    <img src="./assets/images/iconsElBill/black/unite.svg" class="image" />
+    <span *ngIf="type==='unity'" >{{card.name}}</span>
+    <span *ngIf="type==='vat'" >{{card.value}}</span>
+    <span *ngIf="type==='iban'" >{{card.iban}}</span>
+    <span *ngIf="type==='country'" >{{card.name}}</span>
+ 
+  
+  
+    <em  (click)="showModal(type)"  nz-icon  nz-popover   [nzPopoverContent]="contentTemplate"
+        nzPopoverPlacement="bottom" nzType="more" nzTheme="outline"></em>
+    <ng-template #contentTemplate>
+      <div>
+        <span>{{'common.update' | translate}}</span>
+      </div>
+    </ng-template>
+  </nz-card>
+  
+  
+  
+  
+  <nz-card class=" card card-Add" *ngIf="!card" (click)="addCard()">
+    <img src="./assets/images/icons/plusSvg.svg" class="image" [alt]="'common.add' | translate"/>
+    <span>{{'common.add' | translate}}</span>
+ </nz-card>
+  
+ </div>
+  
+ <!--<el-bill-modalSettings [type]="'unity'"  *ngIf="type==='unity'"  [action]="'update'" (changeHandle)="isVisibleHandle($event)"  [card]="card" [title]="'buttons.update_unity'" [isVisible]="isVisibleEdit"></el-bill-modalSettings>
+ <el-bill-modalSettings   [type]="'unity'"  *ngIf="type==='unity'"  [action]="'add'"  (changeHandle)="isVisibleHandle($event)"  [title]="'buttons.add_new_unity'" [isVisible]="isVisible"></el-bill-modalSettings>-->
+  
+  
+ <el-bill-modalSettings [type]="'unity'"  *ngIf="type=='unity'" [action]="'update'" (changeHandle)="isVisibleHandle($event)"  [card]="card" [title]="'buttons.update_unity'" [isVisible]="isVisibleEdit"></el-bill-modalSettings>
+ <el-bill-modalSettings [type]="'unity'"  *ngIf="type=='unity'"  [action]="'add'" (changeHandle)="isVisibleHandle($event)" [title]="'buttons.add_new_unity'" [isVisible]="isVisible"></el-bill-modalSettings>
+  
+  
+ <el-bill-modalSettings  [type]="'vat'" *ngIf="type=='vat'"  [action]="'update'" (changeHandle)="isVisibleHandle($event)"  [card]="card" [title]="'buttons.update_vat'" [isVisible]="isVisibleEdit"></el-bill-modalSettings>
+ <el-bill-modalSettings [type]="'vat'"  *ngIf="type=='vat'"  [action]="'add'"  (changeHandle)="isVisibleHandle($event)"  [title]="'buttons.add_new_vat'" [isVisible]="isVisible"></el-bill-modalSettings>
+ 
+  
+  
+ <el-bill-modalSettings [type]="'iban'"  *ngIf="type=='iban'" [action]="'update'" (changeHandle)="isVisibleHandle($event)"  [card]="card" [title]="'buttons.update_iban'" [isVisible]="isVisibleEdit"></el-bill-modalSettings>
+ <el-bill-modalSettings [type]="'iban'"  *ngIf="type=='iban'"  [action]="'add'" (changeHandle)="isVisibleHandle($event)" [title]="'buttons.add_new_iban'" [isVisible]="isVisible"></el-bill-modalSettings>
+
+ <el-bill-modalSettings [type]="'country'"  *ngIf="type=='country'" [action]="'update'" (changeHandle)="isVisibleHandle($event)"  [card]="card" [title]="'buttons.update_country'" [isVisible]="isVisibleEdit"></el-bill-modalSettings>
+ <el-bill-modalSettings [type]="'country'"  *ngIf="type=='country'"  [action]="'add'" (changeHandle)="isVisibleHandle($event)" [title]="'buttons.add_new_country'" [isVisible]="isVisible"></el-bill-modalSettings>
+   

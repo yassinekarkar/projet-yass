@@ -1,0 +1,95 @@
+{
+  "extends": "",
+  "ignorePatterns": [
+    "!**/*"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "*.ts"
+      ],
+      "parserOptions": {
+        "project": [
+          "**/**/tsconfig.app.json"
+        ],
+        "createDefaultProgram": true
+      },
+      "rules": {
+        "array-bracket-spacing": "error",
+        "arrow-spacing": "error",
+        "brace-style": "error",
+        "object-curly-spacing": ["error", "always"],
+        "max-len": ["error", { "code": 500 }],
+        "object-curly-newline": "error",
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "type": "element",
+            "prefix": "alea",
+            "style": "kebab-case"
+          }
+        ],
+        "typescript/no-unused-vars": "error",
+        "no-underscore-dangle": "off",
+        "@angular-eslint/directive-selector": [
+          "error",
+          {
+            "type": "attribute",
+            "prefix": "alea",
+            "style": "camelCase"
+          }
+        ],
+        "no-shadow": "warn",
+        "@typescript-eslint/no-shadow": "warn",
+        "@typescript-eslint/naming-convention": [
+          "error",
+          {
+            "selector": "variable",
+            "modifiers": ["const"],
+            "format": ["UPPER_CASE"]
+          },
+          {
+            "selector": "interface",
+            "format": ["PascalCase"],
+            "custom": {
+              "regex": "^I[A-Z]",
+              "match": true
+            }
+          },
+          {
+            "selector": "enum",
+            "format": ["PascalCase"],
+            "custom": {
+              "regex": "^E[A-Z]",
+              "match": true
+            }
+          },
+          {
+            "selector": "variable",
+            "types": ["boolean"],
+            "format": ["PascalCase"],
+            "prefix": ["is", "should", "has", "can", "did", "will", "IS", "SHOULD", "HAS", "CAN", "DID", "WILL"]
+          },
+          {
+            "selector": "memberLike",
+            "modifiers": ["private"],
+            "format": ["camelCase"],
+            "leadingUnderscore": "require"
+          },
+          {
+            "selector": "typeParameter",
+            "format": ["PascalCase"],
+            "prefix": ["T"]
+          }
+        ]
+
+      }
+    },
+    {
+      "files": [
+        "*.html"
+      ],
+      "rules": {}
+    }
+  ]
+}

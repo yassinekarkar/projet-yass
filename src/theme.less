@@ -1,0 +1,168 @@
+@import "node_modules/ng-zorro-antd/ng-zorro-antd.less";
+
+@font-family: Poppins;
+@primary-color: #0F6B8D;
+@pink-color :#E55361;
+@black-gray-color :#040405;
+@light-gray-color :#EFF2F6;
+@light-blue-color :#C7CFD3;
+@success-color :#68A721;
+
+
+
+:root {
+  --primary-color: @primary-color;
+  --pink-color: @pink-color;
+  --black-gray-color: @black-gray-color;
+  --light-gray-color: @light-gray-color;
+  --light-blue-color: @light-blue-color;
+  --success-color: @success-color;
+
+}
+
+
+/////////////////////////////////////////////////////////////
+///////////////////// CUSTOM CLASSES EL_BILL /////////////////
+/////////////////////////////////////////////////////////////
+
+
+
+.text-primary {
+  color: var(--primary-color);
+  &:hover , &:focus {
+    color: var(--primary-color);
+  }
+}
+
+.text-pink {
+  color: var(--pink-color);
+  &:hover , &:focus {
+    color: var(--pink-color);
+  }
+}
+
+.text-success {
+  color: var(--success-color);
+}
+.btn-outline-bill {
+  padding: 10px 30px;
+  height: 50px;
+  width: 160px;
+  text-transform: capitalize;
+  border-color: var(--primary-color);
+  font-family: "Bold";
+  color: var(--primary-color);
+  border-radius: 30px;
+  transition: all .4s linear;
+  &:focus , &:hover {
+    background-color: var(--primary-color);
+    color: #fff;
+  }
+}
+
+.bill-success-button {
+  background: var(--success-color) !important;
+  color: #fff;
+  border: none !important;
+}
+
+/////////////////////////////////////////////////////////////
+///////////////////// END CUSTOM CLASSES EL_BILL ///////////
+/////////////////////////////////////////////////////////////
+
+
+el-bill-features {
+  .ant-menu-inline {
+    width: 100%;
+    height: 100vh;
+  }
+
+  .el-bill-side-bar {
+   .ant-layout-footer {
+      text-align: center;
+      color: var(--primary-color);
+      font-family: 'Bold';
+      font-size: 20px;
+      background: #fff;
+      border-radius: 0 0 20px 20px;
+    }
+
+  }
+}
+
+.el-bill-table {
+  .ant-table.ant-table-small {
+    margin-bottom: 30px;
+  }
+}
+
+.el-bill-pagination {
+  .ant-select:not(.ant-select-customize-input) .ant-select-selector{
+    border-color: var(--primary-color);
+    color:var(--primary-color)
+  }
+  .anticon.anticon-caret-down{
+    color:var(--primary-color)
+  }
+  span {
+    color: var(--primary-color);
+  }
+  .page-size-select {
+    margin-right:20px!important;
+  }
+  .ant-pagination-item {
+
+    min-width: 30px!important;
+    height: 30px!important;
+    margin: 0!important;
+    line-height: 30px!important;
+    border-radius: 50%!important;
+    a {
+
+    }
+    &.ant-pagination-item-active{
+
+    }
+  }
+}
+
+
+.el-bill-cardSettings {
+    .ant-card-body {
+      padding: 10px 10px 10px 10px !important;
+    }
+}
+
+.el-bill-register{
+    .ant-descriptions-item-label {
+      display: none !important;
+    }
+  }
+
+.ant-btn , .ant-btn:focus {
+  outline: none;
+}
+
+.ant-dropdown.user-drop {
+  position: relative;
+  top: 20px;
+  left: -26px;
+}
+
+.user-drop .ant-dropdown-menu-item, .ant-dropdown-menu-submenu-title {
+  padding: 5px 26px;
+  color: var(--primary-color);
+}
+
+.modalSettings {
+  .ant-modal-title {
+    text-align: center !important;
+    font-size: 20px !important;
+    font-family: 'Medium' !important;
+    line-height: 30px !important;
+  }
+  .ant-modal-footer{
+    display: none;
+  }
+}
+

@@ -1,0 +1,14 @@
+<div class="search-bar center-horizontally m-bottom-30 ">
+  <div class="search-bar">
+    <nz-input-group [nzSuffix]="suffixTemplate">
+      <input
+        [type]="'text'"
+        nz-input
+        [placeholder]="'common.search' | translate"
+      />
+    </nz-input-group>
+    <ng-template #suffixTemplate>
+      <em nz-icon nzType="search" nzTheme="outline"></em>
+    </ng-template>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<div class="p-10 percent-width-100 center-horizontally space-between el-bill-main-header align-center">
+  <div></div>
+  <div>
+    <button [nzOverlayClassName]="'user-drop'" nzTrigger="click"  nz-button nz-dropdown
+            class="header-user-menu"
+            [nzDropdownMenu]="menu"
+            [nzPlacement]="'bottomRight'">
+      <nz-avatar [nzSize]="50"
+                 [nzIcon]="'user'"
+                 [nzSrc]="avatarImg">
+      </nz-avatar>
+
+      <em nz-icon nzType="caret-down" nzTheme="outline"></em>
+    </button>
+    <nz-dropdown-menu #menu="nzDropdownMenu" >
+      <ul nz-menu>
+        <li nz-menu-item >{{'common.my-account' | translate}}</li>
+      </ul>
+    </nz-dropdown-menu>
+    <button (click)="logOut()"  class="btn-outline-bill " nzType="default" nz-button >{{'buttons.logout' | translate}}</button>
+  </div>
+</div>

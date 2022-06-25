@@ -1,0 +1,82 @@
+{
+  "mainTitle": "EL_BILL",
+  "errors": {
+    "no_password": "Mot de passe obligatoire.",
+    "no_login": "Login obligatoire.",
+    "no_email": "e-mail obligatoire.",
+    "invalid_email": "e-mail n'est pas valide.",
+    "invalid_name": "le nom n'est pas valide.",
+    "invalid_value": "le valeur n'est pas valide."
+  },
+  "signIn": {
+    "description": "Bienvenue dans El-bill",
+    "password_placeholder" : "mot de passe",
+    "email": "email",
+    "signIn": "connexion",
+    "register": "s'inscrire"
+  },
+
+  "common": {
+    "copyright": "Réalisé par <a href=\"http://www.smarteo.tn\" target=\"_blank\">SMARTEO.TN </a> ©{{year}}",
+    "my-account": "Mon Compte",
+    "confirm": "confirmer",
+    "lastName" : "Nom du responsable",
+    "firstName" : "Prenom du responsable",
+    "country" : "Pays",
+    "city" : "ville",
+    "zipCode" : "Zip code",
+    "phone" : "N°Telephone",
+    "name" : "Nom de société",
+    "or" : "ou",
+    "loading" : "Chargement",
+    "add": "Ajouter",
+    "update": "Edit",
+    "show_details": "Afficher le details",
+    "search": "Chercher"
+
+  },
+  "user": {
+    "vat_number": "Numero de TVA",
+    "register_number": "Numero de register",
+    "settings": "Parameters"
+  },
+  "buttons": {
+    "dashboard": "Accueil",
+    "myClients": "Les clients",
+    "logout": "déconnexion",
+    "home": "Accueil",
+    "settings": "Paramètres",
+    "unities" : "Les unités",
+    "vat"   : "les TVA",
+    "users"   : "Les utilisateurs",
+    "ibans"   : "Les Ibans",
+    "payment_condition"   : "Les conditions de payement",
+    "add_new_unity" : "Ajouter une nouvelle unitée",
+    "update_unity": "Modifier l'unité",
+    "download": "Télécharger",
+    "upload": "Importer",
+    "products": "Les produits",
+    "quotes" : "Devis",
+    "bills" : "facture",
+    "add_new_vat" : "Ajouter une nouvelle TVA",
+    "update_vat" : "Modifier TVA"
+  },
+  "tableColumns" : {
+    "name" : "Nom" ,
+    "company" : "Société",
+    "actions" : "Les actions",
+    "status" : "status",
+    "payed_bill": "Facture payée",
+    "un_payed_bill": "Facture impayée",
+    "logo": "Image",
+    "view_per_page" : "vue par page",
+    "client_name" : "CLient",
+    "created_at" : "Crée",
+    "total_price_ttc" : "Total TTC",
+    "prix_ht" : "Prix unitaire",
+    "vat" : "TVA",
+    "prix_ttc" : "Prix total incl TVA"
+
+  }
+}
+

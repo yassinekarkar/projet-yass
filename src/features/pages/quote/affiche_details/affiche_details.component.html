@@ -1,0 +1,77 @@
+<div class="container-fluid">
+    <div class="row text-start display-3">
+        Devis N° {{quote.estimate_number}}
+    </div>
+    <div class="row justify-content-between">
+            <div class="col-4 mt-5 text-start">
+                <div class="card"  style="width: 22rem;">
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item"> <span class="fw-bold"> Objet </span> : <span class="fst-italic">Devis</span></li>
+                      <li class="list-group-item"> <span class="fw-bold"> Crée par </span> : {{quote.creator}}</li>
+                      <li class="list-group-item"> <span class="fw-bold"> Crée le </span> : {{quote.created_at}}</li>
+                      <li class="list-group-item"> <span class="fw-bold"> Statut </span> : <span class="badge rounded-pill bg-secondary"> {{quote.status}} </span></li>
+                      <li class="list-group-item"> <span class="fw-bold"> Date début </span> : {{quote.date_begin}}</li>
+                      <li class="list-group-item"> <span class="fw-bold"> Date fin </span> : {{quote.date_end}}</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-4 mt-5 text-end">
+                <div class="card text-start border border-3" style="width: 25rem;">
+                    <div class="card-header fs-5">
+                      <a data-bs-toggle="collapse" href="#collapseClient"><i class="bi bi-person-circle"></i>  Détails du client</a>
+                    </div>
+                    <div class="collapse" id="collapseClient">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><span class="fw-bold">Nom </span> : {{quote.client_name}}</li>
+                            <li class="list-group-item"><span class="fw-bold">Ville </span> : {{quote.client_city}}</li>
+                            <li class="list-group-item"><span class="fw-bold">Adresse </span> : {{quote.client_address}}</li>
+                            <li class="list-group-item"><span class="fw-bold">Zip code </span> : <span class="p-1 bg-primary rounded-pill"> {{quote.client_zipcode}} </span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div> 
+    </div>
+    <div class="bg-primary rounded-pill mx-4 mt-5 p-2 row">
+        <div class="col-sm-1 fw-bold fs-6">Réference</div>
+        <div class="col-sm-2 fw-bold fs-6">Désignation</div>
+        <div class="col-sm-2 fw-bold fs-6">Quantité</div>
+        <div class="col-sm-2 fw-bold fs-6">Prix Hors Taxe</div>
+        <div class="col-sm-1 fw-bold fs-6">TVA </div>
+        <div id="columnDiscount" class="col-sm-2 fw-bold fs-6">Remise</div>
+        <div class="col-sm-2 fw-bold fs-6">Montant TTC</div>
+    </div>  
+    <div id="productList" class="mx-5 p-2 conatiner">
+
+    </div>
+    <div class="row mx-5">
+        <div class="col-md-4 offset-md-8">
+            <span class="fs-6 fst-italic fw-bold">Total TTC : {{ quote.totalTTC }} {{ this.quote.currency }}</span><br>
+            <div id="discountIsTotal">
+                <hr>
+                <span class="fs-6 fst-italic fw-bold">Remise : {{quote.discount}} %</span><br>
+            </div>    
+            <hr>
+            <span class="fs-6 fst-italic fw-bold">Total après remise : {{quote.totalAfterDiscount}} {{this.quote.currency }}</span>
+        </div>    
+    </div>
+    <div class="container">
+        <div class="row mt-5">
+            <span class="fs-4 fw-bold"><i class="bi bi-card-list" ></i> Remarques :</span>
+            <div class="row">
+                <span class="fw-bolder"><i class="bi fs-5 bi-arrow-return-right"></i> Pré note : </span>
+                <p class="fw-lighter"> {{ quote.pre_note }} </p>
+            </div>
+            <div class="row">
+                <span class="fw-bolder"><i class="bi fs-5 bi-arrow-return-right"></i>Post note : </span>
+                <p class="fw-lighter">{{ quote.post_note }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 offset-md-4 text-center">
+            <p><span class="fs-6 fw-bolder">{{ quote.company_name }}</span></p>
+            <p class="lh-1"><i class="bi bi-envelope"></i><span class="fw-bolder">  {{ quote.company_mail }}</span></p>
+            <p class="lh-1"><i class="bi bi-geo-alt"></i><span class="fw-bolder"> {{ quote.company_address }}</span></p>
+        </div>
+    </div>
+</div>

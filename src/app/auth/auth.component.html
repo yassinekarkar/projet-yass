@@ -1,0 +1,58 @@
+
+    <nz-header>
+       <div class="percent-width-100 center-horizontally space-between">
+          <img src="./assets/images/logoBillWhite.svg" alt="Bill" class="logo m-top-10">
+
+         <div class="btn-registers m-top-10">
+           <button  class="btn-outline-bill m-right-10"   (click)="goTO('/sign-in')" nz-button   [ngClass]="{'active' : url === 'login'}"  [nzType]="'default'">
+             {{'signIn.signIn' | translate}}
+           </button>
+           <button  class="btn-outline-bill " (click)="goTO('/register')" nz-button   [ngClass]="{'active' : url === 'register'}" [nzType]="'default'">
+             {{'signIn.register' | translate}}
+           </button>
+
+         </div>
+
+       </div>
+     </nz-header>
+
+    <div class="center-horizontally position-center percent-width-100 percent-height-100 auth-box ">
+
+      <form nz-form [formGroup]="authForm" (ngSubmit)="submit()">
+        <p class="text-center">{{'signIn.description' | translate}}</p>
+        <nz-form-item>
+          <nz-form-control [nzErrorTip]="'errors.invalid_email' | translate">
+            <nz-input-group>
+              <input type="text" nz-input formControlName="username" [placeholder]="'signIn.email' | translate" />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control [nzErrorTip]="'errors.no_password' | translate">
+            <nz-input-group>
+              <input type="password" nz-input formControlName="password"
+                     [placeholder]="'signIn.password_placeholder' | translate" />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <button nz-button class="percent-width-100 m-top-16 fixed-height-50" [nzType]="'primary'" *ngIf="url ==='login'">
+            {{ 'signIn.signIn'| translate}}
+          </button>
+          <button nz-button class="percent-width-100 m-top-16 fixed-height-50" [nzType]="'primary'" *ngIf="url !=='login'">
+            {{ 'signIn.register'| translate}}
+          </button>
+        </nz-form-item>
+        <div class="text-center  center-vertically" >
+          <span class="">  {{'common.or' | translate}} </span>
+          <a class="text-pink text-capitalize"  *ngIf="url ==='login'" [routerLink]="'/register'"> {{'signIn.register' | translate}}</a>
+          <a class="text-pink text-capitalize"  *ngIf="url ==='register'" [routerLink]="'/sign-in'"> {{'signIn.signIn' | translate}}</a>
+        </div>
+
+
+        <div class="m-top-60 percent-width-100 center-horizontally position-center">
+          <p class="copyright" [innerHTML]="'common.copyright' | translate: {year: year}"></p>
+        </div>
+      </form>
+    </div>
+

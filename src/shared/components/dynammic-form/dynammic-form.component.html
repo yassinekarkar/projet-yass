@@ -1,0 +1,104 @@
+<div class="container" *ngFor="let i of productList">
+    <form id="form{{i}}" nzLayout="'inline'" >   
+        <div class="row">
+            <div class="col-sm-2">
+                <nz-form-item >
+                    <nz-form-control>
+                        <input nz-input class="rounded-pill"  name="name" type="text" placeholder="Désignation" id="name{{i}}">
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div class="col-sm-2">
+                <nz-form-item>
+                    <nz-form-control>
+                        <!--<nz-select>
+                            <nz-option nzValue="jack" nzLabel="Kg"></nz-option>
+                            <nz-option nzValue="lucy" nzLabel="Mètre"></nz-option>
+                            <nz-option nzValue="disabled" nzLabel="Litre" ></nz-option>
+                        </nz-select>-->
+                        <select type="text" id="unity{{i}}" class="form-control rounded-pill">
+                            <option *ngFor="let unity of uitiesList" [value]="unity.code">
+                                {{unity.name}}
+                            </option>
+                        </select>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div class="col-sm-1">
+                <nz-form-item nzSpan="30">
+                    <nz-form-control>
+                        <input nz-input class="rounded-pill" FormControlName="quantity" name="quantity" id="amount{{i}}" type="number"  placeholder="Quantité">
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div class="col-sm-2">
+                <nz-form-item>
+                    <nz-form-control>
+                        <input nz-input class="rounded-pill" FormControlName="unitPrice" name="unitPrice" id="unit_price{{i}}" type="number" placeholder="Prix Unitaire" >
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div class="col-sm-1">
+                <nz-form-item>
+                    <nz-form-control>
+                        
+                        <!-- <input nz-input class="rounded-pill" min="0" max="100" FormControlName="tva" name="tva" id="tva{{i}}" type="number" placeholder="TVA(%)" id="tva"> -->
+                        <select class="form-control rounded-pill" id="vat{{i}}">
+                            <option *ngFor="let vat of vatsList" [value]="vat.code">
+                              {{ vat.value }}
+                            </option>
+                          </select>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div class="col-sm-1">
+                <nz-form-item>
+                    <nz-form-control>
+                        <input nz-input class="rounded-pill" min="0" max="100" type="number" value="0" id="discount{{i}}" placeholder="Remise(%)" [disabled]="remise != 0">
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div class="col-sm-2">
+                <div class="row">
+                    <div class="col-sm-9">
+                        <nz-form-item>
+                            <nz-form-control>
+                                        <input nz-input class="rounded-pill mon" disabled id="montant{{i}}">                        
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                    <div class="col-sm-1 text-end">
+                        <div class="mx-1 mt-1">
+                            <i id="boutton{{i}}" class="bi bi-x-circle fs-5" (click)="removeMe($event)"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-1">
+            </div>
+        </div>     
+    </form>
+</div>
+<div class="row my-5">
+    <div class="col-sm-3">
+        <button class="btn rounded-pill btn-primary" (click)="add()" ><i class="bi bi-plus-circle-fill"></i>  Ajouter une ligne</button>
+    </div>
+    <div class="col-sm-2">
+        <button class="btn btn-primary rounded-pill" (click)="validate()"><i class="bi bi-check-circle-fill"></i>  Valider</button>
+    </div>
+</div>
+<div class="row">
+    <div class="offset-8 col-sm-4">
+        <div class="row">
+            <span>Montant HT : {{ montantHT }}</span>
+        </div>
+        <hr>
+        <div class="row">
+            <span>Remise : {{ remise }} %</span>
+        </div>
+        <hr>
+        <div class="row">
+            <span>Montant TTC : {{ montantTTC }}</span>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+<div class="el-bill-side-bar">
+  <div class="percent-width-100 center-horizontally space-between">
+    <div class="sidebar-logo" *ngIf="!isCollapsed" (click)="handleMenuButton.emit()">
+      <img src="./assets/images/logoBill.svg" alt="Bill" class="logoBill m-vertical-40">
+    </div>
+    <span *ngIf="isCollapsed" class="header-trigger center-vertically position-center m-horizontal-30" (click)="handleMenuButton.emit()">
+         <img src="./assets/images/logoBill.svg" alt="logo">
+  </span>
+  </div>
+  <ul nz-menu nzMode="inline">
+    <li *ngFor="let group of sideMenuButtons"
+        nz-menu-group
+        [class.hide-title]="isCollapsed"
+        [class.not-hide-title]="!isCollapsed"
+    >
+      <ul>
+        <li *ngFor="let button of group.children"
+            [nzSelected]="currentRoute.includes(button.url)"
+            nz-menu-item>
+          <a [routerLink]="button.url" [class.disabled]="button.disabled ? true : null">
+            <img *ngIf="button.icon" class="icon-sodebar m-right-10" [src]="button.icon" />
+            <span *ngIf="!isCollapsed">
+            {{button.name | translate}}
+          </span>
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <nz-footer> ©{{year}} </nz-footer>
+</div>
+

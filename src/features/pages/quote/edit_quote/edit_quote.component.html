@@ -1,0 +1,163 @@
+<form [formGroup]="editQuote" (ngSubmit)="updateQuote()">
+  <div class="mx-3 row ">
+    <div class="bg-light my-2 col-lg-9 p-2">
+      <div class="row justify-content-between">
+        <div class="col-4 text-start">
+          <label for="exampleDataList" class="form-label fs-4">Client</label> 
+           <select class="form-control rounded-pill" formControlName="client" (change)="onChangeClient($event)" required>
+            <option *ngFor="let client of clientsList" [(value)]="client.code"  >
+              {{client.name}}
+            </select>
+        </div>
+        <div class="col-4 text-end">
+          <h4 class="p-2 display-3">{{ documentTitle }}</h4>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <h4 class="fs-4 text-start">Details</h4>
+        <div class="col-lg-4">
+          <div class="row py-2">
+            <div class="col py-2 fs-6 fw-bold">
+              Numéro de Devis
+            </div>
+            <div class="col" >
+              <input id="estimateNumber" type="text" formControlName="estimateNumber" class="rounded-pill form-control" >
+            </div>
+          </div>
+          <div class="row py-2">
+            <div class="fw-bold fs-6 py-2 col">
+              Date
+            </div>
+            <div class="col">
+              <input name="date" id="dateBegin" formControlName="dateBegin"  type="date" class="rounded-pill form-control">
+            </div>
+          </div>
+          <div class="row py-2">
+            <div class="fw-bold fs-6 py-2 col">
+              Date de validité
+            </div>
+            <div class="col">
+              <input formControlName="dateEnd"  type="date" class="rounded-pill form-control">
+            </div>
+          </div>
+          <div *ngIf="displayRemiseTotal" class="row py-2">
+            <div  class="col py-2 fs-6 fw-bold">
+              Taux de remise en (%)
+            </div>
+            <div class="col" >
+              <input id="discount" (change)="passValue()" [(ngModel)]="discount" type="number" formControlName="discountTotal" min="0" max="100" value="0" class="rounded-pill form-control">
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-8 h-100">
+          <div class="row justify-content-end py-2">
+            <div class="col-2 fs-6 py-2 fw-bold">
+              Message
+            </div>
+            <div class="col-6">
+              <textarea formControlName="preNote"  type="text" style="height:150px" class="rounded-pill form-control"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div class="row my-5 mx-5">
+        <app-dynammic-form [remise]="discountVal" (newlineEvent)="getItemList($event)"></app-dynammic-form>
+      </div>
+      <div class="row text-start">
+        <div class="col-5">
+        <label for="postnote" class="fs-6  fw-bold form-label"> Notes </label> 
+          <textarea formControlName="postNote"  type="text" style="height:150px" class="rounded-3 form-control"></textarea>
+        </div>
+      </div>
+      <div class="row my-5 text-end">
+          <div class="tetx-end">
+            <button type="submit" class="rounded-pill btn-primary btn"><i class="bi bi-send-fill"></i>  Envoyer cette Devis</button>
+          </div>
+      </div>
+    </div>
+    <div class="my-2 col-lg-3">
+      <div class="bg-light row mx-3">
+        <div class="px-5 pt-5 container"> 
+          <!-- <h5>{{userInfo.firstname }}  {{userInfo.lastname}}</h5> -->
+          <!-- <h6>{{userInfo.mail}}</h6> -->
+          <!-- <p>{{userInfo.firstname}} {{userInfo.lastname}}</p>
+          <p>{{userInfo.mail}}</p>
+           -->
+        </div>
+        <div class="container">
+          <p class='my-2 mx-5'>
+            <a class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+              <span><i class="bi bi-gear"></i></span> Paramétres
+            </a>
+          </p>
+          <div class="collapse" id="collapseExample">
+            <div class="container">
+              <div class="container">
+                <label for="currencyInput" class="form-label fw-bold">Devise</label>
+                <select type="text" class="form-control rounded-pill"  id="currencyInput" formControlName="currency" (change)="onChangeCurrency($event)" required >
+                  <option *ngFor="let currency of currenciesList" [value]="currency.code">{{currency.name}} ({{currency.shortname}})</option>
+                </select>
+              </div>
+            </div>
+            <hr>
+            <div class="container">
+              <div class="container" >
+                <label for="LanguageInput" class="form-label fw-bold">Languge</label>
+                <select type="text"  (change)="onChangeLanguage($event)" required formControlName="language"   name="langue"  class="form-control rounded-pill" id="LanguageInput" >
+                  <option *ngFor="let language of languagesList" [value] = "language.code">{{language.name}}</option>                  
+                </select>
+              </div>
+            </div>
+            <hr>
+            <div class="container">
+              <div class="container">
+                <label for="LanguageInput" class="form-label fw-bold">Remise</label>
+                <div class=" justify-content-between row  py-2">
+                  <div class="fw-bold fs-6 col">
+                    Remise
+                  </div>
+                  <div class="col">
+                    <div class="text-center form-switch">
+                      <input  class="fs-5 form-check-input form-switch" type="checkbox" (change)="thereIsDiscount = !thereIsDiscount" id="flexCheckDefault" [checked]="thereIsDiscount">
+                    </div>
+                  </div>
+                </div>
+                <div class="row px-2">Base de calcul</div>
+                <div class="row  py-2">
+                  <div class="fw-bold  col-lg-7">
+                    Total
+                  </div>
+                  <div class="col">
+                    <div class="form-switch">
+                      <input class="fs-5 form-check-input form-switch"  type="checkbox"  (change)="displayRemiseTotal = !displayRemiseTotal; " [checked]="displayRemiseTotal"  id="flexCheckDefault">
+                    </div>
+                  </div>
+                </div>
+                <div class="row  py-2">
+                  <div class="fw-bold  col-lg-7">
+                    Par ligne
+                  </div>
+                  <div class="col">
+                    <div class="form-switch">
+                      <input class="fs-5 form-check-input form-switch"  (change)="displayRemiseColumn = !displayRemiseColumn; " type="checkbox" [checked]="displayRemiseColumn" id="flexCheckDefaut">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr>
+            <div class="container py-2">
+              <label for="titleInput" class="form-label fw-bold">Titre de document</label>
+              <input type="text" class="form-control rounded-pill"  formControlName="head"  [(ngModel)]="documentTitle" id="titleInput" placeholder="Example input placeholder">
+              <div class="container py-2">
+            </div>
+          </div>
+          </div>
+        </div> 
+      </div>
+    </div>
+  </div>
+  </form>
+

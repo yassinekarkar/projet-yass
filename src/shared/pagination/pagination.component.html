@@ -1,0 +1,18 @@
+<div class="el-bill-pagination center-horizontally position-center justify-center p-10">
+  <span class="m-right-10">{{"tableColumns.view_per_page" | translate}}</span>
+  <nz-select class="page-size-select m-right-20 " (ngModelChange)="onSelectChange($event)" [nzSuffixIcon]="selectSuffixIcon" [(ngModel)]="pageSize">
+    <nz-option *ngFor="let size of pageSizes" [nzValue]="size" [nzLabel]="''+size"></nz-option>
+  </nz-select>
+  <ng-template #selectSuffixIcon>
+    <em nz-icon nzType="caret-down" nzTheme="outline"></em>
+  </ng-template>
+  <span>{{current + ' - ' + pageSize + ' sur ' + total}}</span>
+  <nz-pagination
+    class="links-content"
+    (nzPageIndexChange)="pageIndexChange($event)"
+    [(nzPageIndex)]="current"
+    [(nzPageSize)]="pageSize"
+    [nzTotal]="total"
+    [nzSize]="'small'">
+  </nz-pagination>
+</div>

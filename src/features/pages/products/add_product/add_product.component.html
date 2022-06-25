@@ -1,0 +1,77 @@
+  <h4>Add product</h4>
+  <!--<form [formGroup]="form" (ngSubmit)="addProduct()">
+    <div>
+      <div class="form-group">
+        <label for="name">name</label>
+        <input id="name" type="text" formControlName="name">
+        <br> <br>
+        <label for="description">description</label>
+        <input id="description" type="text" formControlName="description">
+        <br> <br>
+        <label for="unit price">unit price</label>
+        <input id="unit_price" type="text" formControlName="unit_price">
+
+        <br> <br>
+        <label for="cars">TVA:</label>
+
+        <select class="form-control col-lg-8" (change)="onChangeVat($event)" required>
+          <option *ngFor="let vat of vatsList" [value]="vat.code">
+            {{vat.value}}
+          </option>
+        </select>
+        <br> <br>
+        <label for="cars">Unity:</label>
+        <select class="form-control col-lg-8" (change)="onChangeUnity($event)" required>
+          <option *ngFor="let unity of uitiesList" [value]="unity.code">
+            {{unity.name}}
+          </option>
+        </select>
+        <br> <br>
+        <button type="submit" class="button">Ajouter</button>
+      </div>
+    </div>
+  </form>  -->
+
+  <form nz-form nzJustify="center" [formGroup]="form" (ngSubmit)="addProduct()">
+    <nz-form-item>
+      <nz-form-label [nzSpan]="5" nzRequired nzFor="name">name</nz-form-label>
+      <nz-form-control [nzSpan]="12" nzErrorTip="Please input name producyt!">
+        <input id="name" type="text" nz-input formControlName="name" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="5" nzRequired nzFor="description">description</nz-form-label>
+      <nz-form-control [nzSpan]="12" nzErrorTip="Please input your username!">
+        <input id="description" type="text" nz-input formControlName="description" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="5" nzRequired nzFor="unit_price">price</nz-form-label>
+      <nz-form-control [nzSpan]="12" nzErrorTip="Please input your username!">
+        <input id="unit_price" type="text" nz-input formControlName="unit_price" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="5">TVA</nz-form-label>
+      <nz-form-control [nzSpan]="12" nzErrorTip="Please select your TVA!">
+        <nz-select (change)="onChangeVat($event)" nzRequired>
+          <nz-option *ngFor="let vat of vatsList" [nzValue]="vat.code">{{vat.value}}</nz-option>
+  
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="5">UNITY</nz-form-label>
+      <nz-form-control [nzSpan]="12" nzErrorTip="Please select your TVA!">
+        <nz-select (change)="onChangeUnity($event)" nzRequired>
+          <nz-option *ngFor="let unity of uitiesList" [nzValue]="unity.code">{{unity.name}}</nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control [nzSpan]="12" [nzOffset]="5">
+        <button nz-button nzType="primary">Submit</button>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+

@@ -1,0 +1,82 @@
+<body>
+  <h4>Add client</h4>
+  <form  [formGroup]="form"  (ngSubmit)="addClient()">
+        <div>
+          <div class="form-group">
+     <!-- fromConrtrole name bech tji 3al select  select :  option bech ikoun feha l id wl espace win tekteb bech ikoun feha {{}}-->
+            <label for="type">name</label>
+            <input id="name" type="text"  formControlName="name" >
+            <br> <br>  
+            <label for="country">Country</label>
+            <select class="form-control col-lg-8"  required formControlName="country" (change)="onChangeCountry($event)">
+              <option *ngFor="let Country of countryList" [value]="Country.code">
+                  {{Country.longname}}
+              </option>    
+          </select>
+          <br> <br>
+          <label for="paymentCondition">Payment Condition:</label>
+
+          <select class="form-control col-lg-8" required formControlName="paymentCondition" (change)="onChangePaymentCondition($event)">
+            <option *ngFor="let paymentCondition of paymentConditionList" [value]="paymentCondition.code">
+                {{paymentCondition.longname}}
+            </option>    
+        </select>
+            <br> <br>
+            <label for="prenom">firstname</label>
+            <input id="firstname" type="text"  formControlName="firstname" >
+         
+            <br> <br>
+            <label for="lastname">lastname</label>
+            <input id="lastname" type="text"  formControlName="lastname" >
+
+            <br> <br>
+            <label for="registryNumber">registry Number</label>
+            <input id="registryNumber" type="text"  formControlName="registryNumber" >
+
+            <br> <br>
+            <label for="vatNumber">vatNumber</label>
+            <input id="vatNumber" type="text"  formControlName="vatNumber" >
+
+            <br> <br>
+
+            <label for="address">address</label>
+            <input id="address" type="text"  formControlName="address" >
+
+            <br> <br>
+
+            <label for="zipcode">zipcode</label>
+            <input id="zipcode" type="text"  formControlName="zipcode" >
+
+            <br> <br>
+
+            <label for="city">city</label>
+            <input id="city" type="text"  formControlName="city" >
+
+            <br> <br>
+
+            <label for="mail">mail</label>
+            <input id="mail" type="text"  formControlName="mail" >
+
+            <br> <br>
+
+            <label for="phone">phone</label>
+            <input id="phone" type="text"  formControlName="phone" >
+
+            <br> <br>
+
+            <label for="type">type</label>
+            <input id="type" type="text"  formControlName="type" >
+
+
+            <br> <br>
+
+      
+           
+            <button type="submit" class="button">Ajouter</button>
+          </div>
+          </div>
+  </form>
+  
+  </body>
+  
+  

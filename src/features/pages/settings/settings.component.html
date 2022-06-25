@@ -1,0 +1,22 @@
+<el-bill-sub-header [title]="'user.settings'"></el-bill-sub-header>
+
+<div class="el-bill-settings">
+  <nz-tabset (nzSelectedIndexChange)="selectedIndexChange($event)">
+    <nz-tab *ngFor="let tab of tabs" [nzTitle]="titleTemplate">
+      <ng-template #titleTemplate>
+        <img [src]="tab.icon"   [alt]="tab.name" class="icon"   />
+        {{ tab.name | translate }}
+      </ng-template>
+
+      <el-bill-unities *ngIf="tab.name === 'buttons.unities'" ></el-bill-unities>
+      <el-bill-payment-conditions *ngIf="tab.name === 'buttons.payment_condition'"></el-bill-payment-conditions>
+      <el-bill-users  *ngIf="tab.name === 'buttons.users'"></el-bill-users>
+      <el-bill-vats  *ngIf="tab.name === 'buttons.vat'"></el-bill-vats>
+       <el-bill-ibans *ngIf="tab.name === 'buttons.ibans'"></el-bill-ibans> 
+       <el-bill-ibans *ngIf="tab.name === 'buttons.countries'"></el-bill-ibans>  
+    </nz-tab>
+  </nz-tabset>
+
+</div>
+
+
