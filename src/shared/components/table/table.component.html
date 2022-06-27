@@ -57,9 +57,9 @@
           <div id="tested">
             <nz-dropdown-menu #actionsMenu="nzDropdownMenu">
               <ul nz-menu >              
-                  <li id="itemEdition{{data.id}}" (click)="passId($event)" nz-menu-item><em nz-icon ></em>{{"Editer" | translate}}
+                  <li id="itemEdition{{data.code}}" (click)="passId($event)" nz-menu-item><em nz-icon ></em>{{"Editer" | translate}}
                   </li>
-                  <li id="itemDisplay{{data.id}}" (click)="passId($event)"  nz-menu-item><em nz-icon ></em>{{"Afficher Détails" | translate}}
+                  <li id="itemDisplay{{data.code}}" (click)="passId($event)"  nz-menu-item><em nz-icon ></em>{{"Afficher Détails" | translate}}
                   </li>
               </ul>
             </nz-dropdown-menu>

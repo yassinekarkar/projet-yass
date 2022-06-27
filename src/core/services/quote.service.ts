@@ -30,15 +30,13 @@ export class QuotesService {
 
 
 
-  public getQuote(code: string) {
-    return this._http.get(`${this.backUrl}/front/quote/${code}`);
+  public getQuote(code: string) : Observable<any> {
+    return this._http.get<any>(`${this.backUrl}/front/quote/${code}`);
   }
 
+  public updateQuote(data): Observable<any> {
 
-
-  public updateQuote(Quote: string, data): Observable<any> {
-
-    return this._http.put<Quote>(`${this.backUrl}/front/quote/${Quote}`, data);
+    return this._http.put<any>(`${this.backUrl}/front/quote/${Quote}`, data);
   }
 
 

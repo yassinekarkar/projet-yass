@@ -43,7 +43,6 @@ export class ProductsComponent implements OnInit {
         icon: 'edit',
         fn: (data: any) => {
           console.log(data);
-
           this.router.navigateByUrl(`/products/edit_product/?id=${data.code}`)
         }
       },
@@ -76,7 +75,6 @@ export class ProductsComponent implements OnInit {
   }
 
   handleCancel(): void {
-    console.log('Button cancel clicked!');
     this.isVisible = false;
     this.isVisible1 = false;
   }
@@ -97,11 +95,11 @@ export class ProductsComponent implements OnInit {
     this.displayDetails = true;
   }
 
-  private getProductHasId(_id: number) {
+  private getProductHasId(_id: string) {
     let product: any;
-    this.PRODUCTS.forEach(element => {
-      if (element.id == _id) product = element
-    });
+    this.PRODUCTS.filter((element) => {
+      return element.code = _id;
+    })
     return product;
   }
 }

@@ -49,9 +49,9 @@ export class Affiche_detailsComponent implements OnInit {
   constructor(private quoteServ: QuotesService,private router:ActivatedRoute ,private unityService: UnitiesService, private vatServie:VatsService,private clientSer: ClientsService,private currencySer: CurrenciesService,private languageServ: LanguagesService,private UserInfoSer: UserInformationService,private userSer: UserCallerService,private forb:FormBuilder,private _notification: NzNotificationService,private route:Router) {}
 
   ngOnInit() {      
-    this.quoteServ.getQuote(this.router.snapshot.queryParams.id).subscribe
-    ( (result : any) => {
-      console.log( 'test quote' , this.quote);    
+    this.quoteServ.getQuote("ca1d3cb7-ac44-4b84-b590-8a32657bffba").subscribe
+    ((result : any) => {
+      console.log(result);    
      }
     ),
 

@@ -31,8 +31,8 @@ export class DynammicFormComponent implements OnInit {
   uitiesList: IUnity[] = [];
   vatsList: IVat[] = [];
   ngOnInit(): void {
-    // this.getUnities();
-    // this.getVats();
+    this.getUnities();
+    this.getVats();
     this.counter = this.currentList.length;
     let indexList = this.currentList.map(element => {
       let i = this.currentList.indexOf(element);

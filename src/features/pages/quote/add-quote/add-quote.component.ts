@@ -120,6 +120,8 @@ export class AddQuoteComponent implements OnInit {
     this.getVats();
     this.getUnities();
     this.getUserInformation();
+    console.log(this.currenciesList);
+    
   }
   getItemList(event) {
     this.itemList = event;

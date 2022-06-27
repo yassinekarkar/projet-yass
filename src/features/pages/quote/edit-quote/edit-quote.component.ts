@@ -31,8 +31,9 @@ import { Client } from '../../client/client.model';
 
 export class EditQuoteComponent implements OnInit {
 
-  editForm: FormGroup;
+  editForm: FormGroup = new  FormGroup({});
   quote: any;
+  display : boolean = false;
   currentProductList: any = [];
   clientsList: Client[] = [];
   languagesList: ILanguage[] = [];
@@ -62,73 +63,105 @@ export class EditQuoteComponent implements OnInit {
     private userSer: UserCallerService,
     private _notification: NzNotificationService,
   ) { }
+  // justForTest: any = {
+  //   client: "415ef",
+  //   dateBegin: "2015-02-08",
+  //   dateEnd: "2022-05-09",
+  //   estimateNumber: 88,
+  //   preNote: "blablablablblalbalblbalalablblablbalblabl",
+  //   postNote: "blbbalblalallballballalblalallballbalbllalba",
+  //   discount: 1,
+  //   discount_fixed_value: 0, 
+  //   discount_on_total: 0,
+  //   discountTotal:20,
+  //   head: "Devis",
+  //   products: [
+  //     {
+  //       name: "product1",
+  //       amount: 150,
+  //       unit_price: 120,
+  //       vat: "15 %",
+  //       discount: 20,
+  //       montant: 100,
+  //       unity: "Kg"
+  //     },
+  //     {
+  //       name: "product2",
+  //       amount: 30,
+  //       unit_price: 200,
+  //       vat: "15 %",
+  //       discount: 20,
+  //       montant: 150,
+  //       unity: "L"
+  //     },
+  //     {
+  //       name: "product3",
+  //       amount: 50,
+  //       unit_price: 250,
+  //       vat: "15 %",
+  //       discount: 10,
+  //       montant: 200,
+  //       unity: "M"
+  //     }
+  //   ]
+  // }
   code: string;
   ngOnInit(): void {
-    this.quote = {
-      client: "415ef",
-      dateBegin: "2015-02-08",
-      dateEnd: "2022-05-09",
-      estimateNumber: 88,
-      preNote: "blablablablblalbalblbalalablblablbalblabl",
-      postNote: "blbbalblalallballballalblalallballbalbllalba",
-      discount: 1,
-      discount_fixed_value: 0, 
-      discount_on_total: 0,
-      discountTotal:20,
-      head: "Devis",
-      products: [
-        {
-          name: "product1",
-          amount: 150,
-          unit_price: 120,
-          vat: "15 %",
-          discount: 20,
-          montant: 100,
-          unity: "Kg"
-        },
-        {
-          name: "product2",
-          amount: 30,
-          unit_price: 200,
-          vat: "15 %",
-          discount: 20,
-          montant: 150,
-          unity: "L"
-        },
-        {
-          name: "product3",
-          amount: 50,
-          unit_price: 250,
-          vat: "15 %",
-          discount: 10,
-          montant: 200,
-          unity: "M"
-        }
-      ]
-    }
     let quoteCode = this._router.url.substring(19);
-    // this.getCurrentQuoteDetails(quoteCode);
-    this.currentProductList = this.quote.products;
+    this.getCurrentQuoteDetails(quoteCode);
+    console.log(this.quote);
+    this.getClients();
+    this.getLanguages();
+    this.getCurrencies();
+  }
+
+  // ngAfterViewInit(): void {
+  //   // this.currentProductList = this.quote.products;
+  //   this.editForm = this.formBuilder.group
+  //     ({
+  //       client: [this.quote['client'], [Validators.required]],
+  //       dateBegin: [this.quote['dateBegin'], [Validators.required]],
+  //       dateEnd: [this.quote['dateEnd'], [Validators.required]],
+  //       estimateNumber: [this.quote['estimateNumber'], [Validators.required]],
+  //       preNote: [this.quote['preNote'], [Validators.required]],
+  //       postNote: [this.quote['postNote'], [Validators.required]],
+  //       head: [this.quote['head'], [Validators.required]],
+  //       language: ['', [Validators.required]],
+  //       currency: ['', [Validators.required]],
+  //       discountTotal: [this.quote['discountTotal'], Validators.required]
+  //     });
+  //   this.displayRemiseColumn = this.quote['discount_fixed_value'];
+  //   this.displayRemiseTotal = this.quote['discount_on_total'];
+  //   this.thereIsDiscount = this.quote['discount'];
+  // }
+  private BuildForm() {
     this.editForm = this.formBuilder.group
       ({
         client: [this.quote['client'], [Validators.required]],
-        dateBegin: [this.quote['dateBegin'], [Validators.required]],
-        dateEnd: [this.quote['dateEnd'], [Validators.required]],
-        estimateNumber: [this.quote['estimateNumber'], [Validators.required]],
-        preNote: [this.quote['preNote'], [Validators.required]],
-        postNote: [this.quote['postNote'], [Validators.required]],
+        dateBegin: [this.quote['date_begin'].slice(0,10), [Validators.required]],
+        dateEnd: [this.quote['date_end'].slice(0,10), [Validators.required]],
+        estimateNumber: [this.quote['estimate_number'], [Validators.required]],
+        preNote: [this.quote['pre_note'], [Validators.required]],
+        postNote: [this.quote['post_note'], [Validators.required]],
         head: [this.quote['head'], [Validators.required]],
-        language: ['', [Validators.required]],
-        currency: ['', [Validators.required]],
-        discountTotal: [this.quote['discountTotal'], Validators.required]
+        language: [this.quote['language'] , [Validators.required]],
+        currency: [this.quote['currency'], [Validators.required]],
+        discountTotal: [this.quote['discount_total'], Validators.required]
       });
     this.displayRemiseColumn = this.quote['discount_fixed_value'];
     this.displayRemiseTotal = this.quote['discount_on_total'];
     this.thereIsDiscount = this.quote['discount'];
+    this.currentProductList = this.quote['products'];
   }
 
   private getCurrentQuoteDetails(code: string) {
-    this.quoteService.getQuote(code).subscribe(data => this.quote = data);
+    this.quoteService.getQuote(code).subscribe(data => {
+      console.log(data.results.data);
+      this.quote = data.results.data.quote;
+      this.display = true;
+      console.log(this.quote);
+      this.BuildForm();   
+    });
   }
 
   public passValue() {
@@ -136,17 +169,19 @@ export class EditQuoteComponent implements OnInit {
   }
 
   public editQuote() {
-    console.log(this.code);
     console.log(this.displayRemiseColumn);
     let finalObject = {};
     finalObject = this.editForm.value;
-    finalObject['creator'] = this.userInfo.code;
+    // finalObject['creator'] = this.userInfo.code;
     finalObject['products'] = this.itemList;
     finalObject['discount'] = this.thereIsDiscount ? 1 : 0;
     finalObject['discount_fixed_value'] = this.displayRemiseColumn ? 1 : 0;
     finalObject['discount_on_total'] = this.displayRemiseTotal ? 1 : 0;
     finalObject['status'] = 'DRAFT';
-    // console.log("quote donnees", finalObject);
+    console.log(finalObject);
+    
+    //Update Quote
+    this.quoteService.updateQuote(finalObject).subscribe(data => console.log(data))
   }
   getClients() {
     this.clientSer.getClients()
@@ -154,9 +189,7 @@ export class EditQuoteComponent implements OnInit {
         this.clientsList = data.results.data.rows
       })
   }
-  private getQuoteToEdit(id) {
-    this.quoteService.getQuote(id).subscribe(data => this.quote)
-  }
+
   getUserInformation() {
     this.UserInfoSer.getUserInfo()
       .subscribe((data: any) => {
@@ -230,6 +263,7 @@ export class EditQuoteComponent implements OnInit {
 
   onChangeClient(newValue) {
     this.code = newValue.target.value;
+    console.log(this.quote);
     //this.editForm.value.client  = newValue.target.value
 
   }
@@ -245,5 +279,4 @@ export class EditQuoteComponent implements OnInit {
     this.editForm.value.currency = newValue.target.value
 
   }
-
 }

@@ -1,7 +1,7 @@
 
 export const environment = {
   production: false,
-  apiUrl : 'http://api.elbill.local:8080'
+  apiUrl : 'http://localhost:8080'
 };
 
 
