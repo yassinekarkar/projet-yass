@@ -25,6 +25,14 @@ export class DynammicFormComponent implements OnInit {
   counter: number = 0;
   productList: Array<number> = [];
   itemList: Array<object> = [];
+  Display0: boolean =false; 
+  Display1: boolean =false; 
+  Display2: boolean =false; 
+  Display3: boolean =false; 
+  Display4: boolean =false; 
+  Display5: boolean =false; 
+  Display6: boolean =false; 
+  Display7: boolean =false; 
   inputNames = ['name', 'amount', 'unity', 'unit_price', 'vat', 'discount'];
   montantHT: number = 0;
   montantTTC: number = 0;
@@ -56,7 +64,8 @@ export class DynammicFormComponent implements OnInit {
     // this.updateCalculate();
   }
 
-  validate() {
+  validate(e) {
+    e.preventDefault();
     this.itemList = [];
     this.productList.forEach(index => {
       let lineObject = {};
@@ -101,11 +110,23 @@ export class DynammicFormComponent implements OnInit {
 
   private fillCommandLine(_id) {
     this.inputNames.forEach(element => {
-      let obj = document.querySelector('#' + element + _id);
-      obj['value'] = this.currentList[_id][element]
+      let obj = document.querySelector('#' + element + _id) as HTMLElement;
+      obj['value'] = this.currentList[_id][element];
+      if (element == 'vat' || element == 'unity') this.setInputSelect(obj,this.currentList[_id][element]); 
     });
   }
-
+  
+  private setInputSelect(parentSelect : HTMLElement, code: string) {
+    let optionsCollection = parentSelect.children;
+          window.addEventListener('mouseover', function() {
+            let arr = Array.from(optionsCollection);
+            arr.forEach(optionElement => {
+              if (optionElement['value'] == code ) {
+                optionElement.setAttribute('selected','true');
+              }
+            });
+          })
+  }
   removeMe(event) {
     let element = event.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement as HTMLElement;
     element.removeChild(document.querySelector('#form' + event.target.id.slice(7)));

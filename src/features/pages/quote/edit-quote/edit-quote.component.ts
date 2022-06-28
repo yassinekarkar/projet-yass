@@ -179,9 +179,9 @@ export class EditQuoteComponent implements OnInit {
     finalObject['discount_on_total'] = this.displayRemiseTotal ? 1 : 0;
     finalObject['status'] = 'DRAFT';
     console.log(finalObject);
-    
+
     //Update Quote
-    this.quoteService.updateQuote(finalObject).subscribe(data => console.log(data))
+    this.quoteService.updateQuote(finalObject).subscribe(data => console.log(data));
   }
   getClients() {
     this.clientSer.getClients()

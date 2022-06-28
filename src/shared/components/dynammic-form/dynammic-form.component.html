@@ -44,7 +44,7 @@
                         
                         <!-- <input nz-input class="rounded-pill" min="0" max="100" FormControlName="tva" name="tva" id="tva{{i}}" type="number" placeholder="TVA(%)" id="tva"> -->
                         <select class="form-control rounded-pill" id="vat{{i}}">
-                            <option *ngFor="let vat of vatsList" [value]="vat.code">
+                            <option *ngFor="let vat of vatsList;" [value]="vat.code">
                               {{ vat.value }}
                             </option>
                           </select>
@@ -84,7 +84,7 @@
         <button class="btn rounded-pill btn-primary" (click)="add()" ><i class="bi bi-plus-circle-fill"></i>  Ajouter une ligne</button>
     </div>
     <div class="col-sm-2">
-        <button class="btn btn-primary rounded-pill" (click)="validate()"><i class="bi bi-check-circle-fill"></i>  Valider</button>
+        <button class="btn btn-primary rounded-pill" (click)="validate($event)"><i class="bi bi-check-circle-fill"></i>  Valider</button>
     </div>
 </div>
 <div class="row">
