@@ -34,7 +34,7 @@ export class QuotesService {
     return this._http.get<any>(`${this.backUrl}/front/quote/${code}`);
   }
 
-  public updateQuote(data): Observable<any> {
+  public updateQuote(Quote:string, data: any): Observable<any> {
 
     return this._http.put<any>(`${this.backUrl}/front/quote/${Quote}`, data);
   }

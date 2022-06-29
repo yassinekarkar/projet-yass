@@ -46,8 +46,7 @@ export class Affiche_detailsComponent implements OnInit {
   
   
     ngOnInit() {
-      console.log(this.router.snapshot.queryParams.id);
-      
+      console.log(this.router.snapshot.queryParams.id); 
       this.ClientSer.getClient(this.router.snapshot.queryParams.id).subscribe
       ( (result : any)=>{
         console.log( 'teeest' , result.results.data.data);
