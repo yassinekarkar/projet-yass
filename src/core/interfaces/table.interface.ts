@@ -15,6 +15,6 @@ export interface IHeader {
 export interface ITable {
   header: IHeader[];
   nameTable: string[];
-  data: ITableData[];
+  data: any;
   actions: ITableAction[];
 }

@@ -88,6 +88,7 @@ export class Affiche_detailsComponent implements OnInit {
     this.quoteServ.getQuote(this.route.url.slice(22)).subscribe
       ((data: any) => {        
         this.quote = data.results.data.quote;
+        console.log(this.quote);
         this.resolveCreator();
       });
     this.getUnities();

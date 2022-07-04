@@ -18,18 +18,22 @@ import { IUnity } from 'src/core/interfaces/unity.interface';
 export class EditProductComponent implements OnInit {
 
   @Input() productDetails: Object;
-  product: Product
+  product: any = {
+    prix_ht: 'test',
+    description: '',
+    name: ''
+  };
 
   vatsList: IVat[] = [
     {
-      code : "aez",
+      code: "aez",
       value: "1120"
     }
   ];
   uitiesList: IUnity[] = [];
 
   editProductForm = new FormGroup({});
-  prixTTC: number ;
+  prixTTC: number;
   res: boolean = false
   constructor(
     private route: Router,
@@ -39,39 +43,39 @@ export class EditProductComponent implements OnInit {
     private vatServie: VatsService,
     private router: ActivatedRoute,
     private _notification: NzNotificationService) { }
-  ngOnInit() {    
+  
+  ngOnInit() {
     this.editProductForm = this.fb.group({
-      name : [this.productDetails['name'],Validators.required],
-      description : [this.productDetails['description'],Validators.required],
-      prix_ht: [this.productDetails['prix_ht'],Validators.required], 
-      unity: ['',Validators.required],
-      vat: ['',Validators.required]
+      name: ['', Validators.required],
+      description: ['', Validators.required],
+      unit_price: ['', Validators.required],
+      unity: ['', Validators.required],
+      vat: ['', Validators.required]
     });
-    this.ServPrd.getProduct(this.router.snapshot.queryParams.id).subscribe
+    this.ServPrd.getProduct(this.productDetails['code']).subscribe
       ((result: any) => {
-        //console.log( 'cccc' , result);
         this.product = result.results.data.product
-        console.log('test test', this.product);
-      }
-      ),
-    this.getVats();
-    this.getUnities();
-    this.updateProduct();
+        this.editProductForm.get('name').setValue(this.product['name']);
+        this.editProductForm.get('description').setValue(this.product['description']);
+        this.editProductForm.get('unit_price').setValue(this.product['unit_price']);
+        this.editProductForm.get('unity').setValue(this.product['unity']);
+        this.editProductForm.get('vat').setValue(this.product['vat']);
+      }),
+      this.getVats();
+      this.getUnities();
   }
 
-  public updatePrice() {    
-    let taxe = this.editProductForm.get('prix_ht').value * (this.editProductForm.get('vat').value/100);
+  public updatePrice() {
+    let taxe = this.editProductForm.get('prix_ht').value * (this.editProductForm.get('vat').value / 100);
     this.prixTTC = this.editProductForm.get('prix_ht').value + taxe;
   }
   getVats() {
     this.vatServie.getVats();
     this.vatServie.getVatsSuccess().subscribe((vats: any) => {
-      this.vatsList = vats?.results?.data?.rows;
-
+    this.vatsList = vats?.results?.data?.rows;
     })
   }
   getUnities() {
-
     this.unityService.getUnities();
     this.unityService.getUnitiesSuccess().subscribe((unities: any) => {
       this.uitiesList = unities?.results?.data?.rows
@@ -79,30 +83,19 @@ export class EditProductComponent implements OnInit {
   }
 
   onChangeVat(newValue) {
-    console.log(newValue.target.value);
     this.editProductForm.value.vat = newValue.target.value
-
   }
 
   onChangeUnity(newValue) {
-    console.log(newValue.target.value);
     this.editProductForm.value.unity = newValue.target.value
-
   }
 
 
   updateProduct() {
     console.log(this.editProductForm.value);
-    this.ServPrd.updateProduct(this.router.snapshot.queryParams.id, this.editProductForm.value).subscribe((result) => {
-      console.log(result, "data update successful")
-      //console.log("updated!")
-      //this.toastr.success('Le ,om du groupe à étè modifier avec succées ')
-      // this.route.navigateByUrl("/products")
-      this._notification.create('info',
-        'Modification',
-        `Le modification a été fait avec succès`);
+    this.ServPrd.updateProduct(this.productDetails['code'], this.editProductForm.value).subscribe((result) => {
+      this._notification.create('info', 'Modification', `Le modification a été fait avec succès`);
       this.route.navigateByUrl("/products")
-
     })
   }
 

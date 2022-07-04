@@ -24,7 +24,7 @@ export class ProductsService {
     return this._http.post<Product>( `${this.backUrl}/front/product` , {params}  );
 }*/
 
-public addProduct(Product:Product):Observable <Product>
+public addProduct(Product:any):Observable <Product>
 {
 const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) };
 var p=JSON.stringify(Product)

@@ -124,10 +124,8 @@ export class AddQuoteComponent implements OnInit {
     
   }
   getItemList(event) {
-    event.preventDefault();
     this.itemList = event;
-    console.log(event);
-    
+    console.log(event);  
   }
 
   public passValue() {

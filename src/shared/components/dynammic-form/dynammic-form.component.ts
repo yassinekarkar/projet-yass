@@ -54,14 +54,17 @@ export class DynammicFormComponent implements OnInit {
   }
 
   add() {
+    this.updateCalculate();
     this.counter++;
-    this.productList.push(this.counter);
-    this.productList.forEach(element => {
-      let sumPure = (document.querySelector("#unitPrice" + element)['value'] * document.querySelector('#quantity' + element)['value']);
-      sumPure += sumPure * (document.querySelector('#tva' + element)['value'] / 100);
-      document.querySelector("#montant" + element)['value'] = sumPure - sumPure * (document.querySelector("#remise" + element)['value'] / 100);
+    this.productList?.push(this.counter);
+    this.productList?.forEach(element => {
+      let sumPure = (document.querySelector("#unit_price" + element)['value'] * document.querySelector('#amount' + element)['value']);
+      // sumPure += sumPure * (document.querySelector('#tva' + element)['value'] / 100);
+
+      document.querySelector("#montant" + element)['value'] = sumPure - sumPure * (document.querySelector("#discount" + element)['value'] / 100);
+      console.log(sumPure);
+      
     })
-    // this.updateCalculate();
   }
 
   validate(e) {
@@ -78,16 +81,24 @@ export class DynammicFormComponent implements OnInit {
     console.log(this.itemList);
     this.newlineEvent.emit(this.itemList);
   }
-  private updateCalculate() {
+
+  public updateCalculate() {
+    if (this.counter > 0) {
     this.montantHT = 0;
     let sum = document.querySelectorAll('.mon');
-    if (sum[0]['value'] != "") {
-      sum.forEach(element => {
-        if (element['value'] != "") {
-          this.montantHT += parseInt(element['value']);
-        }
-      });
+    sum.forEach(element => {
+      if(element['value'] != "") this.montantHT += parseFloat(element['value']);      
+    })
     }
+    this.montantTTC = this.montantHT - (this.montantHT*(this.remise/100));
+    
+    // if (sum[0]['value'] != "") {
+    //   sum.forEach(element => {
+    //     if (element['value'] != "") {
+    //       this.montantHT += parseInt(element['value']);
+    //     }
+    //   });
+    // }
     console.log(this.montantHT);
 
     // this.montantHT = 0;

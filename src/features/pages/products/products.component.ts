@@ -13,7 +13,7 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
 })
 export class ProductsComponent implements OnInit {
   products$: Product[];
-  
+  target: any;
   isVisible: boolean;
   isVisible1:boolean;
   displayDetails: boolean;
@@ -51,7 +51,6 @@ export class ProductsComponent implements OnInit {
         icon: 'eye',
         fn: (data: ICompany) => {
           console.log(data);
-
           this.router.navigateByUrl(`/products/details_product/?id=${data.code}`)
         }
       },
@@ -60,7 +59,7 @@ export class ProductsComponent implements OnInit {
     return this.productService.getProducts()
       .subscribe((data: any) => {
         console.log(data);
-        this.listOfData.data = data.results.data.rows
+        this.listOfData.data = data.results.data.rows      
       })
     this.isVisible = true;
   }
@@ -80,8 +79,10 @@ export class ProductsComponent implements OnInit {
   }
 
   displayModal(e) {
+    console.log(e);
     let productTarget = this.getProductHasId(e);
     this.data = productTarget;
+    console.log(this.data);
     this.isVisible = true;
   }
 
@@ -95,11 +96,11 @@ export class ProductsComponent implements OnInit {
     this.displayDetails = true;
   }
 
-  private getProductHasId(_id: string) {
-    let product: any;
-    this.PRODUCTS.filter((element) => {
-      return element.code = _id;
-    })
-    return product;
+  private getProductHasId(_id) {
+    let target: any;    
+    this.listOfData?.data?.forEach(element => {
+      if(element.code == _id) target = element
+    });
+    return target;
   }
 }
