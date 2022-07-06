@@ -41,6 +41,9 @@ import { languagesReducer } from 'src/core/store-layer/languages/languages.reduc
 import { LanguagesEffects } from 'src/core/store-layer/languages/languages.effects';
 import { currenciesReducer } from 'src/core/store-layer/currencies/currencies.reducer';
 import { CurrenciesEffects } from 'src/core/store-layer/currencies/currencies.effects';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { NzTabsModule } from 'ng-zorro-antd/tabs';
+
 
 
 registerLocaleData(fr);
@@ -59,7 +62,8 @@ export const HTTP_LOADER_FACTORY = (httpClient: HttpClient) =>
   ],
   exports:[
     SharedModule,
-    AuthComponent
+    AuthComponent,
+    NzTabsModule
   ],
   imports: [
     AppRoutingModule,

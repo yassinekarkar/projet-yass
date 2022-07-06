@@ -14,7 +14,7 @@ export class SubHeaderComponent implements OnInit {
   @Input() title = ''
   @Input() url = ''
   @Input() display = 'false';
-  @Output() addProduct = new EventEmitter<boolean>();
+  @Output() addItem = new EventEmitter<boolean>();
   routeIsProduct: boolean = false;
 
   constructor(private _location: Location, private _router: Router) { }
@@ -33,8 +33,8 @@ export class SubHeaderComponent implements OnInit {
   }
 
   add() {
-    if (this._router.url == '/products') {
-      this.addProduct.emit(true);
+    if (this._router.url == '/products' || this._router.url == '/my-clients') {
+      this.addItem.emit(true);
     }
     if (this._router.url == '/quotes') {
       this._router.navigateByUrl('/quotes/add_quote');

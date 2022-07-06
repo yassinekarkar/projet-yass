@@ -1,0 +1,128 @@
+<form nz-form [formGroup]="addForm" (ngSubmit)="addClient()">
+    <div nz-row>
+        <div nz-col nzSpan="12">
+            <nz-form-item>
+                <nz-form-label nzSm="8" nzRequired nzFor="type">Type de <br> Client</nz-form-label>
+                <nz-form-control nzSm="12" nzErrorTip="S'il vous plait entrez votre nom!">
+                    <select (change)="displayEntrepriseNameInput($event)" name="type" class="form-control rounded-pill" id="type" formControlName="type">
+                        <option value="PARTICULAR">Client Particuler</option>
+                        <option value="PROFESSIONAL">Client Professionel</option>
+                    </select>
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+        <div nz-col nzSpan="12">
+            <nz-form-item>
+                <nz-form-label nzSm="8" nzRequired nzFor="registerNumber">Numéro</nz-form-label>
+                <nz-form-control nzSm="12" nzErrorTip="S'il vous plait entrez votre numéro!">
+                    <input id="registerNumber" class="form-control rounded-pill" type="text" nz-input formControlName="registryNumber" />
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+      </div>
+    <div nz-row>
+        <div nz-col nzSpan="12">
+            <nz-form-item>
+                <nz-form-label nzSm="8" nzRequired nzFor="name">Nom</nz-form-label>
+                <nz-form-control nzSm="12" nzErrorTip="S'il vous plait entrez votre nom!">
+                    <input id="name" class="form-control rounded-pill" type="text" nz-input formControlName="firstname" />
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+        <div nz-col nzSpan="12">
+            <nz-form-item>
+                <nz-form-label nzSm="8" nzRequired nzFor="lastname">Prénom</nz-form-label>
+                <nz-form-control nzSm="12" nzErrorTip="S'il vous plait entrez votre prénom!">
+                    <input id="lastname" type="text" class="rounded-pill" nz-input formControlName="lastname" />
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+    </div> 
+    <div nz-row>
+        <div nz-col nzSpan="12">
+            <nz-form-item>
+                <nz-form-label nzSm="8" nzRequired nzFor="mail">E-mail</nz-form-label>
+                <nz-form-control nzSm="12" nzErrorTip="S'il vous plait entrez votre Email!">
+                    <input id="mail" type="email" class="rounded-pill" nz-input formControlName="mail" />
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+        <div nz-col nzSpan="12">
+            <nz-form-item>
+                <nz-form-label nzSm="8" nzRequired nzFor="phone">Téléphone</nz-form-label>
+                <nz-form-control nzSm="12" nzErrorTip="S'il vous plait entrez votre Email!">
+                    <input id="phone" type="email" class="rounded-pill" nz-input formControlName="phone" />
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+    </div>
+    <div nz-row>
+        <div nz-col nzSpan="12">
+            <nz-form-item>
+                <nz-form-label nzSm="8" nzRequired nzFor="address">Adresse</nz-form-label>
+                <nz-form-control nzSm="12" nzErrorTip="S'il vous plait entrez votre adresse!">
+                    <input id="address" type="text" class="rounded-pill" nz-input formControlName="address" />
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+        <div nz-col nzSpan="12">
+            <nz-form-item>
+                <nz-form-label nzSm="8" nzRequired nzFor="zipcode">ZIP code</nz-form-label>
+                <nz-form-control nzSm="12" nzErrorTip="S'il vous plait entrez votre ZIP code!">
+                    <input id="zipcode" type="email" class="rounded-pill" nz-input formControlName="zipcode" />
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+    </div>
+    <div nz-row>
+        <div nz-col nzSpan="12">
+            <nz-form-item>
+                <nz-form-label nzSm="8" nzRequired nzFor="code">City</nz-form-label>
+                <nz-form-control nzSm="12" nzErrorTip="S'il vous plait entrez votre prénom!">
+                    <input id="description" type="text" class="rounded-pill" nz-input formControlName="city" />
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+        <div nz-col nzSpan="12">
+            <nz-form-item>
+                <nz-form-label nzSm="8" nzRequired nzFor="country">Pays</nz-form-label>
+                <nz-form-control nzSm="12" nzErrorTip="S'il vous plait entrez votre pays!">
+                    <select name="country" class="form-control rounded-pill" formControlName="country" id="country">
+                        <option *ngFor="let country of countryList" value="{{ country.code }}">{{ country.longname }}</option>
+                    </select>
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+    </div> 
+    <div nz-row >
+        <div nz-col nzSpan="12">
+            <nz-form-item>
+                <nz-form-label nzSm="8" nzRequired nzFor="paymentCondition">Condition  <br> de paiement</nz-form-label>
+                <nz-form-control nzSm="12" nzErrorTip="S'il vous plait entrez les conditions de payments!">
+                    <select name="country" class="form-control rounded-pill" formControlName="paymentCondition" id="country">
+                        <option *ngFor="let condition of paymentConditionList" value="{{ condition.code }}">{{ condition.longname }}</option>
+                    </select>
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+        <div nz-col nzSpan="12">
+            <nz-form-item>
+                <nz-form-label nzSm="8" nzRequired nzFor="vatNumber">TVA</nz-form-label>
+                <nz-form-control nzSm="12" nzErrorTip="S'il vous plait entrez votre numéro!">
+                    <input id="vatNumber" min="0" class="form-control rounded-pill" type="number" nz-input formControlName="vatNumber" />
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+    </div>
+    <div *ngIf="displayEntrepriseName">
+        <nz-form-item>
+            <nz-form-label nzSm="8" nzRequired nzFor="vatNumber">Nom de l'entreprise</nz-form-label>
+            <nz-form-control nzSm="12" nzErrorTip="S'il vous plait entrez votre numéro!">
+                <input id="vatNumber" class="form-control rounded-pill" type="number" nz-input formControlName="name" />
+            </nz-form-control>
+        </nz-form-item>
+    </div>
+    <div class="px-5 row text-end">
+        <button nz-button nzType="primary" type="submit">Ajouter</button>
+    </div>
+</form>

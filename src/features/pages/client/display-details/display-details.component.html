@@ -1,0 +1,116 @@
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-2 offset-6">
+            <button class="btn text-primary fw-bold p-3 shadow mb-5 bg-body rounded-pill fs-6 shadow"><i class="bi fs-5 bi-file-earmark-text"></i> Nouvelle Facture</button>
+        </div>
+        <div class="col-2">
+            <button class="btn text-primary fw-bold p-3 shadow mb-5 bg-body rounded-pill fs-6 shadow"><i class="bi fs-5 bi-file-earmark-medical"></i> Nouvelle Devis</button>
+        </div>
+        <div class="col-2">
+            <button class="btn text-primary fw-bold p-3 shadow mb-5 bg-body rounded-pill fs-6 shadow"><i class="bi fs-5 bi-pencil"></i> Modifier</button>
+        </div>
+    </div>
+    <div class="pl-5 row">
+        <div class="text-start col-4">
+            <div class="my-5">
+                <span class="fs-3 fst-italic text-primary border-primary border-bottom">client N° {{client.registry_number}}</span>
+            </div>
+            <div class="py-3">
+                <h5 class="">{{ client.name }}</h5>
+                <h5 class="fw-light">{{client.firstname}} {{client.lastname}}</h5>
+            </div>        
+        </div>
+    </div>
+    <div class="row">
+        <nz-tabset>
+            <nz-tab nzTitle="Info">
+                <div class="row">
+                    <div class="col-4">
+                        <div class="fs-6 py-1 fw-bold">
+                            <span>Adresse Facturation</span>
+                        </div>
+                        <div class="fs-6 py-1 fw-bold">
+                            <span>Email</span>
+                        </div>
+                        <div class="fs-6 py-1 fw-bold">
+                            <span>Termes de paiement</span>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="fs-6 py-1">
+                            <span>{{client.countryName}}</span>
+                        </div>
+                        <div class="fs-6 py-1">
+                            <span>{{client.mail}}</span>
+                        </div>
+                        <div class="fs-6 py-1">
+                            <span>{{client.payment_condition_value}}</span>
+                        </div>
+                    </div>
+                </div>
+            </nz-tab>
+            <nz-tab nzTitle="Devis">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">First</th>
+                        <th scope="col">Last</th>
+                        <th scope="col">Handle</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">3</th>
+                        <td colspan="2">Larry the Bird</td>
+                        <td>@twitter</td>
+                      </tr>
+                    </tbody>
+                  </table>
+            </nz-tab>
+            <nz-tab nzTitle="Facture">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">First</th>
+                        <th scope="col">Last</th>
+                        <th scope="col">Handle</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">3</th>
+                        <td colspan="2">Larry the Bird</td>
+                        <td>@twitter</td>
+                      </tr>
+                    </tbody>
+                  </table>
+            </nz-tab>
+          </nz-tabset>
+    </div>
+</div>

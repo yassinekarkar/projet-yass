@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { ICompany, ITable } from "../../../core";
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from 'src/features/pages/products/products.model';
 @Component({
   selector: 'el-bill-table',
@@ -22,11 +22,13 @@ export class TableComponent implements OnInit {
   display_details: boolean = true;
 
 
-  constructor(private route: Router) { }
+  constructor(
+    private route: Router,
+    private router: ActivatedRoute
+    ) { }
 
   ngOnInit(): void {
     this.target = { vat: 0, prix_ttc: 0, code: 'Guest', name: 'Guest', prix_ht: 0 };
-
   }
 
   passId(e){
@@ -36,7 +38,13 @@ export class TableComponent implements OnInit {
       this.newProductClicked.emit(identifier);
     }
     if (id.slice(4, 11) == "Display") {
-      this.newDisplayProduct.emit(identifier);
+      if (this.route.url == "/products") {
+        this.newDisplayProduct.emit(identifier);
+      }
+      if(this.route.url == "/my-clients"){
+        this.route.navigateByUrl("/my-clients/details_client/" + identifier);
+      };
+        
     }
   }
 

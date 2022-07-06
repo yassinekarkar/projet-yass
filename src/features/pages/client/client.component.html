@@ -1,2 +1,9 @@
-<el-bill-sub-header [title]="'buttons.myClients'" [url]="'/my-clients/add_client'" ></el-bill-sub-header>
+<el-bill-sub-header (addItem)="ShowAddModal()" [title]="'buttons.myClients'" [url]="'/my-clients/add_client'" ></el-bill-sub-header>
 <el-bill-table [dataFrom]="'client'" [listOfData]="listOfData" ></el-bill-table>
+<!-- Modal Add -->
+
+<nz-modal [(nzVisible)]="isVisible" nzTitle="Ajouter un Client" (nzOnCancel)="handleCancel()" nzFooter=" ">
+    <ng-container *nzModalContent>
+        <app-add-client></app-add-client>
+    </ng-container>
+  </nz-modal>

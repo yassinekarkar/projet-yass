@@ -91,6 +91,7 @@ export class ProductsComponent implements OnInit {
   }
 
   displayProduct(e) {
+    
     let productTarget = this.getProductHasId(e);
     this.data = productTarget;
     this.displayDetails = true;

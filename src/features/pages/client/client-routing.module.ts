@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { Add_clientComponent } from './add_client/add_client.component';
 import { EditClientComponent } from './edit-client/edit-client.component';
-import { Affiche_detailsComponent } from './affiche_details/affiche_details.component';
 import { ClientComponent } from './client.component';
+import { DisplayDetailsComponent } from './display-details/display-details.component';
+import { AddClientComponent } from './add-client/add-client.component';
 
 const ROUTES: Routes = [
  /* { path: '', component: ClientComponent,
@@ -31,10 +31,10 @@ const ROUTES: Routes = [
        }
      },
 
-     { path: 'my-clients/add_client',     component: Add_clientComponent ,
+     { path: 'my-clients/add_client',     component: AddClientComponent ,
      data: {
        seo: {
-         title: 'ELBill - add Client'
+        title: 'ELBill - add Client'
        }
      }
    },
@@ -47,10 +47,10 @@ const ROUTES: Routes = [
    }
  },   
 
- { path: 'my-clients/details_client/:id',     component: Affiche_detailsComponent ,
+ { path: 'my-clients/details_client/:id',     component: DisplayDetailsComponent ,
    data: {
      seo: {
-       title: 'ELBill - Edit Client'
+       title: 'ELBill - display details Client'
      }
    }
  },   

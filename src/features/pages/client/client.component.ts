@@ -27,8 +27,8 @@ export class ClientComponent implements OnInit {
     actions: [],
     nameTable: ['les clients']
   };
- 
-  
+  isVisible: boolean = false;
+
   constructor(private clientService: ClientsService, private router : Router ) {}
 
   ngOnInit() {
@@ -55,10 +55,13 @@ export class ClientComponent implements OnInit {
     return this.clientService.getClients()
     .subscribe((data :any) => { console.log(data);
      this.listOfData.data= data.results.data.rows})
-
-  
-
   }
-  
 
+  handleCancel(): void {
+    this.isVisible = false;
+  }  
+
+  ShowAddModal(): void {
+    this.isVisible = true;
   }
+}
