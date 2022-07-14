@@ -56,7 +56,10 @@ export class AddQuoteComponent implements OnInit {
   displayRemiseTotal: boolean = true;
   displayRemiseColumn: boolean = !this.displayRemiseTotal;
   thereIsDiscount: boolean = false;
-
+  discountPerHundred : boolean = false;
+  discountNotPerHundred : boolean = !this.discountPerHundred;
+  discountHtBased : boolean = false;
+  discountTtcBased : boolean = !this.discountHtBased;
 
   code = ''
 
@@ -143,6 +146,10 @@ export class AddQuoteComponent implements OnInit {
     finalObject['discount_fixed_value'] = this.displayRemiseColumn?1:0;
     finalObject['discount_on_total'] = this.displayRemiseTotal?1:0;
     finalObject['status'] = 'DRAFT';
+    finalObject['discount_ht_based'] = this.discountHtBased?1:0;
+    finalObject['discount_ttc_based'] = this.discountTtcBased?1:0;
+    finalObject['discount_per_hundred'] = this.discountPerHundred?1:0;
+    finalObject['discount_not_per_hundred'] = this.discountNotPerHundred?1:0;
     console.log("quote donnees",finalObject);
     
     // Post code to backend Api

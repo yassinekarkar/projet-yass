@@ -78,7 +78,7 @@
       </div>
     </div>
     <div class="my-2 col-lg-3">
-      <div class="bg-light row mx-3">
+      <div class="bg-light row">
         <div class="px-5 pt-5 container"> 
           <!-- <h5>{{userInfo.firstname }}  {{userInfo.lastname}}</h5> -->
           <!-- <h6>{{userInfo.mail}}</h6> -->
@@ -113,7 +113,6 @@
             <hr>
             <div class="container">
               <div class="container">
-                <label for="LanguageInput" class="form-label fw-bold">Remise</label>
                 <div class=" justify-content-between row  py-2">
                   <div class="fw-bold fs-6 col">
                     Remise
@@ -123,25 +122,99 @@
                       <input  class="fs-5 form-check-input form-switch" type="checkbox" (change)="thereIsDiscount = !thereIsDiscount" id="flexCheckDefault" [checked]="thereIsDiscount">
                     </div>
                   </div>
-                </div>
-                <div class="row px-2">Base de calcul</div>
-                <div class="row  py-2">
-                  <div class="fw-bold  col-lg-7">
-                    Total
-                  </div>
-                  <div class="col">
-                    <div class="form-switch">
-                      <input class="fs-5 form-check-input form-switch"  type="checkbox"  (change)="displayRemiseTotal = !displayRemiseTotal; " [checked]="displayRemiseTotal"  id="flexCheckDefault">
+                  <div class="accordion rounded-pill mt-3" id="accordionExample">
+                    <div class="accordion-item py-1">
+                      <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button p-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                          Type de remise
+                        </button>
+                      </h2>
+                      <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                          <div class="row  py-2">
+                            <div class="fw-bold  col-lg-7">
+                              Total
+                            </div>
+                            <div class="col">
+                              <div class="form-switch">
+                                <input class="fs-5 form-check-input form-switch"  type="checkbox"  (change)="displayRemiseColumn = !displayRemiseColumn " [checked]="displayRemiseTotal"  id="flexCheckDefault">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row  py-2">
+                            <div class="fw-bold  col-lg-7">
+                              Par ligne
+                            </div>
+                            <div class="col">
+                              <div class="form-switch">
+                                <input class="fs-5 form-check-input form-switch"  (change)="displayRemiseTotal = !displayRemiseTotal " type="checkbox" [checked]="displayRemiseColumn" id="flexCheckDefaut">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-                <div class="row  py-2">
-                  <div class="fw-bold  col-lg-7">
-                    Par ligne
-                  </div>
-                  <div class="col">
-                    <div class="form-switch">
-                      <input class="fs-5 form-check-input form-switch"  (change)="displayRemiseColumn = !displayRemiseColumn; " type="checkbox" [checked]="displayRemiseColumn" id="flexCheckDefaut">
+                    <div class="accordion-item py-1">
+                      <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed p-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                          Base de calcul
+                        </button>
+                      </h2>
+                      <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                          <div class="row  py-2">
+                            <div class="fw-bold  col-lg-7">
+                              Pourcentage (%)
+                            </div>
+                            <div class="col">
+                              <div class="form-switch">
+                                <input class="fs-5 form-check-input form-switch" (change)="discountNotPerHundred = !discountNotPerHundred" [checked]="discountPerHundred"  type="checkbox" id="flexCheckPourcentage">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row  py-2">
+                            <div class="fw-bold  col-lg-7">
+                              Brute
+                            </div>
+                            <div class="col">
+                              <div class="form-switch">
+                                <input class="fs-5 form-check-input form-switch" (change)="discountPerHundred = !discountPerHundred" [checked]="discountNotPerHundred" type="checkbox" id="flexCheckNormal">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="accordion-item py-1">
+                      <h2 class="accordion-header" id="headingThree">
+                        <button class="accordion-button collapsed p-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                          Base de remise
+                        </button>
+                      </h2>
+                      <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                          <div class="row  py-2">
+                            <div class="fw-bold  col-lg-7">
+                              Base HT
+                            </div>
+                            <div class="col">
+                              <div class="form-switch">
+                                <input class="fs-5 form-check-input form-switch" (change)="discountTtcBased = !discountTtcBased"  [checked]="discountHtBased"  type="checkbox" id="flexCheckBaseHT">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row  py-2">
+                            <div class="fw-bold  col-lg-7">
+                              Base TTC
+                            </div>
+                            <div class="col">
+                              <div class="form-switch">
+                                <input class="fs-5 form-check-input form-switch" (change)="discountHtBased = !discountHtBased" [checked]="discountTtcBased" type="checkbox" id="flexCheckBaseTTC">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>

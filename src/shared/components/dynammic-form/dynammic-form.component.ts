@@ -8,7 +8,8 @@ import { UnitiesService } from 'src/core/services/unities.service';
 import { IUnity } from 'src/core/interfaces/unity.interface';
 import { IVat } from 'src/core';
 import { VatsService } from 'src/core/services/vats.service';
-
+import { ProductsService } from 'src/core/services/product.service';
+import { Product } from 'src/features/pages/products/products.model';
 @Component({
   selector: 'app-dynammic-form',
   templateUrl: './dynammic-form.component.html',
@@ -21,10 +22,15 @@ export class DynammicFormComponent implements OnInit {
   @Input() remise;
   @Input() currentList: Array<Object>;
 
-  constructor(private unityService: UnitiesService, private vatServie: VatsService) { }
+  constructor(
+    private unityService: UnitiesService,
+    private vatServie: VatsService,
+    private productService: ProductsService
+    ) { }
   counter: number = 0;
-  productList: Array<number> = [];
+  productList: Array<number> = [1];
   itemList: Array<object> = [];
+  prodList: Array<Product> = [];
   Display0: boolean =false; 
   Display1: boolean =false; 
   Display2: boolean =false; 
@@ -41,6 +47,7 @@ export class DynammicFormComponent implements OnInit {
   ngOnInit(): void {
     this.getUnities();
     this.getVats();
+    this.getProdList();
     this.counter = this.currentList.length;
     let indexList = this.currentList.map(element => {
       let i = this.currentList.indexOf(element);
@@ -118,7 +125,6 @@ export class DynammicFormComponent implements OnInit {
       this.fillCommandLine(this.currentList.indexOf(element));
     })
   }
-
   private fillCommandLine(_id) {
     this.inputNames.forEach(element => {
       let obj = document.querySelector('#' + element + _id) as HTMLElement;
@@ -144,7 +150,18 @@ export class DynammicFormComponent implements OnInit {
     this.productList.splice(event.target.id.slice(7));
   }
 
-  getVats() {
+  public setPredefinedInputs(e) {
+    console.log(e.target.id);   
+    let choice = this.prodList.find(p => p.name == e.target.value);
+    let elementClicked = e.target as HTMLElement;
+    let parentElement = elementClicked.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement;    
+    //set Unit Price 
+    parentElement.querySelector('.unitPrice').value = choice.prix_ht;
+    parentElement.querySelector('.Tva').value = this.vatsList.find(vat => vat.value == choice.vat.slice(-choice.vat.length,-2)).code
+    parentElement.querySelector('.Unity').value = choice.unity;
+  }
+
+  private getVats() {
     this.vatServie.getVats();
     this.vatServie.getVatsSuccess().subscribe((vats: any) => {
       this.vatsList = vats?.results?.data?.rows;
@@ -152,11 +169,19 @@ export class DynammicFormComponent implements OnInit {
     })
   }
 
-  getUnities() {
+  private getUnities() {
     this.unityService.getUnities();
     this.unityService.getUnitiesSuccess().subscribe((unities: any) => {
       this.uitiesList = unities?.results?.data?.rows
     })
+  }
+  
+  private getProdList() {
+    this.productService.getProducts().subscribe((res) => {
+      console.log(res);
+      this.prodList = res?.results?.data?.rows;
+      console.log(this.prodList); 
+    });
   }
 
 

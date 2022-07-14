@@ -4,7 +4,10 @@
             <div class="col-sm-2">
                 <nz-form-item >
                     <nz-form-control>
-                        <input nz-input class="rounded-pill"  name="name" type="text" placeholder="Désignation" id="name{{i}}">
+                        <input (change)="setPredefinedInputs($event)" class="form-control rounded-pill" nz-input  name="name" list="datalistOptions" placeholder="Désignation" id="name{{i}}" placeholder="">
+                        <datalist  id="datalistOptions">
+                          <option *ngFor="let option of prodList" id="{{option.code}}" value="{{option.name}}">
+                        </datalist>
                     </nz-form-control>
                 </nz-form-item>
             </div>
@@ -16,7 +19,7 @@
                             <nz-option nzValue="lucy" nzLabel="Mètre"></nz-option>
                             <nz-option nzValue="disabled" nzLabel="Litre" ></nz-option>
                         </nz-select>-->
-                        <select type="text" id="unity{{i}}" class="form-control rounded-pill">
+                        <select type="text" id="unity{{i}}" class="Unity form-control rounded-pill">
                             <option *ngFor="let unity of uitiesList" [value]="unity.code">
                                 {{unity.name}}
                             </option>
@@ -34,7 +37,7 @@
             <div class="col-sm-2">
                 <nz-form-item>
                     <nz-form-control>
-                        <input nz-input class="rounded-pill" FormControlName="unitPrice" name="unitPrice" id="unit_price{{i}}" type="number" placeholder="Prix Unitaire" >
+                        <input nz-input class="unitPrice rounded-pill" FormControlName="unitPrice" name="unitPrice" id="unit_price{{i}}" type="text" placeholder="Prix Unitaire" >
                     </nz-form-control>
                 </nz-form-item>
             </div>
@@ -43,7 +46,7 @@
                     <nz-form-control>
                         
                         <!-- <input nz-input class="rounded-pill" min="0" max="100" FormControlName="tva" name="tva" id="tva{{i}}" type="number" placeholder="TVA(%)" id="tva"> -->
-                        <select class="form-control rounded-pill" id="vat{{i}}">
+                        <select class="Tva form-control rounded-pill" id="vat{{i}}">
                             <option *ngFor="let vat of vatsList;" [value]="vat.code">
                               {{ vat.value }}
                             </option>
